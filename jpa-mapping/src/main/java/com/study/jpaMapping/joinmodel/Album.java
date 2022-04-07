@@ -1,0 +1,8 @@
+package com.study.jpaMapping.joinmodel;
+
+import javax.persistence.Entity;
+
+@Entity
+public class Album extends Item{
+    private String artist;
+}
