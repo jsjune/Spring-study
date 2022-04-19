@@ -1,4 +1,4 @@
-package com.study.jpaMapping.joinmodel2;
+package com.study.jpaMapping.joinModel2;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -11,14 +11,14 @@ public class Order extends BaseEntity{
     @GeneratedValue
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="MEMBER_ID")
     private Member member;
 
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="DELIVERY_ID")
     private Delivery delivery;
 

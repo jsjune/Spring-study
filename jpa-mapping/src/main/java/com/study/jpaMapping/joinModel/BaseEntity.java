@@ -1,4 +1,4 @@
-package com.study.jpaMapping.joinmodel;
+package com.study.jpaMapping.joinModel;
 
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;

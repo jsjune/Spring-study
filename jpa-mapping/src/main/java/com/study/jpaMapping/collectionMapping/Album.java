@@ -1,6 +1,6 @@
-package com.study.jpaMapping.joinmodel2;
+package com.study.jpaMapping.collectionMapping;
 
-import com.study.jpaMapping.joinmodel.Item;
+import com.study.jpaMapping.joinModel.Item;
 
 import javax.persistence.Entity;
 

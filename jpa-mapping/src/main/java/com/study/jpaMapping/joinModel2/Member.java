@@ -1,4 +1,4 @@
-package com.study.jpaMapping.joinmodel2;
+package com.study.jpaMapping.joinModel2;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
