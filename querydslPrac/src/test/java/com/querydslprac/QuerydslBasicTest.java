@@ -408,8 +408,8 @@ public class QuerydslBasicTest {
                 .selectFrom(member)
                 .where(member.age.eq(
                         select(memberSub.age.max())
-                                .from(memberSub)
-                ))
+                                .from(memberSub))
+                )
                 .fetch();
 
         assertThat(result).extracting("age")
@@ -619,7 +619,8 @@ public class QuerydslBasicTest {
         List<MemberDto> result = queryFactory
                 .select(Projections.bean(MemberDto.class,
                         member.username,
-                        member.age))
+                        member.age)
+                        )
                 .from(member)
                 .fetch();
 
