@@ -22,6 +22,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
+import org.junit.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -37,7 +38,7 @@ import static com.querydsl.jpa.JPAExpressions.*;
 import static com.querydslprac.entity.QMember.member;
 import static com.querydslprac.entity.QTeam.*;
 import static org.assertj.core.api.Assertions.assertThat;
-
+// db연결해야 실행가능
 @SpringBootTest
 @Transactional
 public class QuerydslBasicTest {

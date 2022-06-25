@@ -1,16 +1,21 @@
 package hello.core.order;
 
 import hello.core.discount.DiscountPolicy;
-import hello.core.member.*;
+import hello.core.member.Member;
+import hello.core.member.MemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-public class OrderServiceImpl implements OrderService {
+@Component
+public class AutoOrderServiceImpl implements OrderService {
 
     private final MemberRepository memberRepository;
 //    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
 //    private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
     private final DiscountPolicy discountPolicy;
 
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    @Autowired
+    public AutoOrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository=memberRepository;
         this.discountPolicy=discountPolicy;
     }
