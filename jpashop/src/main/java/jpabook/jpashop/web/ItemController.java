@@ -1,7 +1,7 @@
 package jpabook.jpashop.web;
 
-import jpabook.jpashop.domain.Book;
-import jpabook.jpashop.domain.Item;
+import jpabook.jpashop.domain.item.Book;
+import jpabook.jpashop.domain.item.Item;
 import jpabook.jpashop.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -47,6 +47,20 @@ public class ItemController {
         return "items/itemList";
     }
 
+    @PostMapping(value = "/items/{itemId}/edit")
+    public String updateItem(@ModelAttribute("form") BookForm form) {
+        itemService.updateItem(form.getId(), form.getName(), form.getPrice(), form.getStockQuantity());
+//        Book book = new Book();
+//        book.setId(form.getId());
+//        book.setName(form.getName());
+//        book.setPrice(form.getPrice());
+//        book.setStockQuantity(form.getStockQuantity());
+//        book.setAuthor(form.getAuthor());
+//        book.setIsbn(form.getIsbn());
+//        itemService.saveItem(book);
+        return "redirect:/items";
+    }
+
     @GetMapping(value = "/items/{itemId}/edit")
     public String updateItemForm(@PathVariable("itemId") Long itemId, Model model) {
         Book item = (Book) itemService.findOne(itemId);
@@ -61,19 +75,5 @@ public class ItemController {
         model.addAttribute("form", form);
 
         return "items/updateItemForm";
-    }
-
-    @PostMapping(value = "/items/{itemId}/edit")
-    public String updateItem(@ModelAttribute("from") BookForm form) {
-        itemService.updateItem(form.getId(), form.getName(), form.getPrice());
-//        Book book = new Book();
-//        book.setId(form.getId());
-//        book.setName(form.getName());
-//        book.setPrice(form.getPrice());
-//        book.setStockQuantity(form.getStockQuantity());
-//        book.setAuthor(form.getAuthor());
-//        book.setIsbn(form.getIsbn());
-//        itemService.saveItem(book);
-        return "redirect:/items";
     }
 }

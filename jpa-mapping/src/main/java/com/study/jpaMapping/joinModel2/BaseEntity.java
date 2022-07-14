@@ -1,5 +1,6 @@
 package com.study.jpaMapping.joinModel2;
 
+import javax.persistence.Entity;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 

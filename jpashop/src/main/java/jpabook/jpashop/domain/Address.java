@@ -6,7 +6,7 @@ import lombok.Setter;
 import javax.persistence.Embeddable;
 
 @Embeddable
-@Getter @Setter
+@Getter
 public class Address {
 
     private String city;

@@ -28,6 +28,7 @@ public class OrderRepository {
         return em.find(Order.class, id);
     }
 
+    // 실무에서 안쓰임
     public List<Order> findAllString(OrderSearch orderSearch) {
         //Language=JPAQL
         String jpql = "select o From Order o join o.member m";
@@ -67,6 +68,7 @@ public class OrderRepository {
         return query.getResultList();
     }
 
+    // 실무에서 안쓰임
     public List<Order> findAllByCriteria(OrderSearch orderSearch) {
 
         CriteriaBuilder cb = em.getCriteriaBuilder();

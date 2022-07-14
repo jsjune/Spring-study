@@ -4,10 +4,7 @@ import com.study.jpaMapping.collectionPrac.Address;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -26,4 +23,15 @@ public class Member {
     // Address
     @Embedded
     private Address homeAddress;
+
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name="city",
+                    column=@Column(name = "WORK_CITY")),
+            @AttributeOverride(name="street",
+                    column=@Column(name = "WORK_STREET")),
+            @AttributeOverride(name="zipcode",
+                    column=@Column(name = "WORK_ZIP"))
+    })
+    private Address workAddress;
 }

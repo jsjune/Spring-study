@@ -5,7 +5,10 @@ import jpabook.jpashop.repository.MemberRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityManager;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -18,8 +21,11 @@ class MemberServiceTest {
     MemberService memberService;
     @Autowired
     MemberRepository memberRepository;
+//    @Autowired
+//    EntityManager em;
 
     @Test
+//    @Rollback(false)
     public void 회원가입() {
 
         //given
@@ -30,6 +36,7 @@ class MemberServiceTest {
         Long saveId = memberService.join(member);
 
         //Then
+//        em.flush();
         assertEquals(member, memberRepository.findOne(saveId));
     }
 

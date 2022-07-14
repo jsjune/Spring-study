@@ -23,13 +23,13 @@ public class MemberController {
     @GetMapping(value = "/members/new")
     public String createForm(Model model) {
         model.addAttribute("memberForm", new MemberForm());
-        return "members/createMemberFrom";
+        return "members/createMemberForm";
     }
 
     @PostMapping(value = "/members/new")
     public String create(@Valid MemberForm form, BindingResult result) {
         if (result.hasErrors()) {
-            return "members/createMemberFrom";
+            return "members/createMemberForm";
         }
 
         Address address = new Address(form.getCity(), form.getStreet(), form.getZipcode());
