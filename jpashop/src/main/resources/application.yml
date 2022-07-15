@@ -14,7 +14,8 @@ spring:
       hibernate:
 #        show_sql: true
         format_sql: true
-        use_sql_comments: true
+#        use_sql_comments: true
+#        default_batch_fetch_size: 100 # OneToMany에서 페이징 N+1 방지 최대1000개
 
   thymeleaf:
     prefix: classpath:/templates/
@@ -24,3 +25,6 @@ logging:
   level:
     org.hibernate.SQL: debug
     org.hibernate.type: trace
+
+server:
+  port: 8081
