@@ -1,6 +1,7 @@
 package com.querydslprac.dto;
 
 import com.querydsl.core.annotations.QueryProjection;
+import com.querydslprac.entity.Member;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,4 +16,9 @@ public class MemberDto {
         this.username = username;
         this.age = age;
     }
+
+//    public MemberDto(Member member) {
+//        this.username = member.getUsername();
+//        this.age=member.getAge();
+//    }
 }

@@ -456,6 +456,14 @@ public class QuerydslBasicTest {
                 ))
                 .fetch();
 
+//        List<Member> result = queryFactory
+//                .selectFrom(member)
+//                .where(member.age.gt(10))
+//                .fetch();
+        for (Member member1 : result) {
+            System.out.println("member1.getAge() = " + member1.getAge());
+        }
+
         assertThat(result).extracting("age")
                 .containsExactly(20, 30, 40);
     }
@@ -471,11 +479,17 @@ public class QuerydslBasicTest {
                                 .from(memberSub)
                 ).from(member)
                 .fetch();
+
+//        List<Tuple> fetch = queryFactory
+//                .select(member.username,
+//                        member.age.avg())
+//                .from(member)
+//                .fetch();
+
         for (Tuple tuple : fetch) {
             System.out.println("username = " + tuple.get(member.username));
-            System.out.println("age = " +
-                    tuple.get(select(memberSub.age.avg())
-                            .from(memberSub)));
+            System.out.println("tuple.get(member.age) = " + tuple.get(JPAExpressions.select(memberSub.age.avg()).from(memberSub)));
+                    
         }
     }
 
@@ -523,6 +537,7 @@ public class QuerydslBasicTest {
                 .when(member.age.between(0, 20)).then(2)
                 .when(member.age.between(21, 30)).then(1)
                 .otherwise(3);
+
         List<Tuple> result = queryFactory
                 .select(member.username, member.age, rankPath)
                 .from(member)
@@ -673,10 +688,15 @@ public class QuerydslBasicTest {
     public void findDtoByConstructor() {
         List<MemberDto> result = queryFactory
                 .select(Projections.constructor(MemberDto.class,
-                        member.username,
-                        member.age))
+                        member.username,member.age))
                 .from(member)
                 .fetch();
+
+//        List<MemberDto> result = queryFactory
+//                .select(Projections.constructor(MemberDto.class,
+//                        member))
+//                .from(member)
+//                .fetch();
 
         for (MemberDto memberDto : result) {
             System.out.println("memberDto = " + memberDto);
@@ -717,6 +737,8 @@ public class QuerydslBasicTest {
     @Order(34)
     @DisplayName("dynamicQuery_BooleanBuilder")
     public void dynamicQuery_BooleanBuilder() {
+//        String usernameParam = null;
+//        Integer ageParam = null;
         String usernameParam = "member1";
         Integer ageParam = 10;
         List<Member> result = searchMember1(usernameParam, ageParam);
@@ -849,6 +871,12 @@ public class QuerydslBasicTest {
         for (String s : result) {
             System.out.println("s = " + s);
         }
+    }
+
+    @Test
+    void NoArgsPublicTest() {
+        Member member = new Member();
+        System.out.println(member.getId());
     }
 }
 

@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @ToString(of = {"id", "username", "age"})
 public class Member {
 
