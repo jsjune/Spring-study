@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import sql.practice.jpql.domain.Comment;
 import sql.practice.jpql.CommentRepository;
+import sql.practice.jpql.domain.Post;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -34,8 +35,11 @@ public class Prac2 {
         tx.begin();
 
         try {
+            Post post = new Post();
+
             Comment comment = new Comment();
             comment.setComment("가나다");
+            comment.setPost(post);
 
             Comment comment1 = new Comment();
             comment1.setComment("라마바");
@@ -58,7 +62,7 @@ public class Prac2 {
             em.clear();
 
             System.out.println("==================================================");
-
+//            em.createQuery("select ")
             System.out.println("==================================================");
 
 
