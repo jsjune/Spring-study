@@ -52,17 +52,17 @@ public class FrontControllerServletV5 extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Object handler = getHandler(request);
+        Object handler = getHandler(request); //1.
         if (handler == null) {
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
 
-        MyHandlerAdapter adapter = getHandlerAdapter(handler);
-        ModelView mv = adapter.handle(request, response, handler);
+        MyHandlerAdapter adapter = getHandlerAdapter(handler); //2,3
+        ModelView mv = adapter.handle(request, response, handler); //4,5
 
-        MyView view = viewResolver(mv.getViewName());
-        view.render(mv.getModel(),request,response);
+        MyView view = viewResolver(mv.getViewName()); //6,7
+        view.render(mv.getModel(),request,response); //8
     }
 
     private Object getHandler(HttpServletRequest request) {
