@@ -1,5 +1,7 @@
 package sql.practice.jpql.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,25 +13,23 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-public class Comment {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+//@AllArgsConstructor
+public class Comment extends Heart {
     private String comment;
 
-    @ManyToOne
-    @JoinColumn(name = "PARENT_ID")
-    private Comment parent;
-
-    @OneToMany(mappedBy = "parent",cascade = CascadeType.ALL)
-    private List<Comment> children = new ArrayList<>();
-
-    @ManyToOne
-    @JoinColumn(name="POST_ID")
-    private Post post;
-
-    private LocalDateTime createdAt;
-    private LocalDateTime modifiedAt;
+//    @ManyToOne
+//    @JoinColumn(name = "PARENT_ID")
+//    private Comment parent;
+//
+//    @OneToMany(mappedBy = "parent",cascade = CascadeType.ALL)
+//    private List<Comment> children = new ArrayList<>();
+//
+//    @ManyToOne
+//    @JoinColumn(name="POST_ID")
+//    private Post post;
+//
+//    private LocalDateTime createdAt;
+//    private LocalDateTime modifiedAt;
 
 
 }

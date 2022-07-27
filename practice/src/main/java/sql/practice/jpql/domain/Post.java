@@ -10,11 +10,11 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-public class Post {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class Post extends Heart {
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
+    private String name;
 
 //    @Embedded
 //    private Heart heart;
