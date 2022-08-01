@@ -1,17 +1,18 @@
 package sql.practice;
 
-import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import sql.practice.jpql.Pppp;
+import sql.practice.jpql.Member;
 import sql.practice.jpql.PpppRespository;
+import sql.practice.jpql.Team;
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceUnit;
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @SpringBootTest
 @Transactional
@@ -30,82 +31,66 @@ public class Prac {
         tx.begin();
 
         try {
-//            Team team = new Team();
-//            team.setName("팀A");
-//            Team team1 = new Team();
-//            team1.setName("팀B");
-//            Team team2 = new Team();
-//            team2.setName("팀C");
-//            Member member = new Member();
-//            member.setUsername("member1");
-//            member.insertTeam(team);
-//            Member member1 = new Member();
-//            member1.setUsername("member2");
-//            member1.insertTeam(team);
-//            Member member2 = new Member();
-//            member2.setUsername("member3");
-//            member2.insertTeam(team1);
-//            Member member3 = new Member();
-//            member3.setUsername("member4");
+            Team team = new Team();
+            team.setName("팀A");
+            Team team1 = new Team();
+            team1.setName("팀B");
+            Team team2 = new Team();
+            team2.setName("팀C");
+            Member member = new Member();
+            member.setUsername("member1");
+            member.insertTeam(team);
+            Member member1 = new Member();
+            member1.setUsername("member2");
+            member1.insertTeam(team);
+            Member member2 = new Member();
+            member2.setUsername("member3");
+            member2.insertTeam(team1);
+            Member member3 = new Member();
+            member3.setUsername("member4");
 
-//            Team team = new Team();
-//            team.setName("팀A");
-//            Member member = new Member();
-//            member.setUsername("회원1");
-//            member.insertTeam(team);
-//            Member member1 = new Member();
-//            member1.setUsername("회원2");
-//            member1.insertTeam(team);
-//            Team team1 = new Team();
-//            team1.setName("팀B");
-//            Team team2 = new Team();
-//            team2.setName("팀C");
-//            Member member2 = new Member();
-//            member2.setUsername("회원3");
-//            member2.insertTeam(team1);
-//            Member member3 = new Member();
-//            member3.setUsername("회원4");
+
+
+            em.persist(member);
+            em.persist(member1);
+            em.persist(member2);
+            em.persist(member3);
+            em.persist(team2);
+
+//            Pppp test = new Pppp();
+//            ArrayList<String> list = new ArrayList<>();
+//            list.add("aaaa");
+//            list.add("bbb");
+//            list.add("cc");
+//            list.add("ddd");
+//            test.setNames(list);
+//            em.persist(test);
 //
-//            em.persist(member);
-//            em.persist(member1);
-//            em.persist(member2);
-//            em.persist(member3);
-//            em.persist(team2);
-
-            Pppp test = new Pppp();
-            ArrayList<String> list = new ArrayList<>();
-            list.add("aaaa");
-            list.add("bbb");
-            list.add("cc");
-            list.add("ddd");
-            test.setNames(list);
-            em.persist(test);
-
             em.flush();
             em.clear();
 
 
-            Pppp pppp = em.find(Pppp.class, 1L);
+//            Pppp pppp = em.find(Pppp.class, 1L);
 //            Pppp pppp = ppppRespository.findById(1L).get();
-            List<String> list1 = pppp.getNames();
-            list1.set(1, "qqqq");
-            pppp.setNames(list1);
-            em.persist(pppp);
-            em.flush();
-            em.clear();
+//            List<String> list1 = pppp.getNames();
+//            list1.set(1, "qqqq");
+//            pppp.setNames(list1);
+//            em.persist(pppp);
+//            em.flush();
+//            em.clear();
 
 
             System.out.println("============================================");
-            System.out.println(pppp.getNames());
+//            System.out.println(pppp.getNames());
 //            String jpql = "select distinct t from Team t join fetch t.members where t.name = '팀A'";
-////            String jpql = "select t from Team t";
-//            List<Team> teams = em.createQuery(jpql, Team.class).getResultList();
-//            for (Team team3 : teams) {
-//                System.out.println("team3 = " + team3.getMembers());
-//            }
+            String jpql = "select t from Team t";
+            List<Team> teams = em.createQuery(jpql, Team.class).getResultList();
+            for (Team team3 : teams) {
+                System.out.println("team = " + team3.getMembers());
+            }
 
-//            String jpql = "select m from Member m join fetch m.team";
-////            String jpql = "select m from Member m";
+////            String jpql = "select m from Member m join fetch m.team";
+//            String jpql = "select m from Member m";
 //            List<Member> members = em.createQuery(jpql, Member.class).getResultList();
 //            for (Member member4 : members) {
 //                System.out.println("member4 = " + member4);
