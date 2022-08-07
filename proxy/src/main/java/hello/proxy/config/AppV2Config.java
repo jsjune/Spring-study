@@ -20,7 +20,10 @@ public class AppV2Config {
         return new OrderServiceV2(orderRepositoryV2());
     }
 
-    private OrderRepositoryV2 orderRepositoryV2() {
+    @Bean
+    public OrderRepositoryV2 orderRepositoryV2() {
         return new OrderRepositoryV2();
     }
+
 }
+
