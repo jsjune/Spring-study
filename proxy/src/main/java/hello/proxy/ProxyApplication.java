@@ -1,6 +1,7 @@
 package hello.proxy;
 
 import hello.proxy.config.v6_aop.AopConfig;
+import hello.proxy.config.v6_aop.aspect.LogTraceAspect;
 import hello.proxy.trace.logtrace.LogTrace;
 import hello.proxy.trace.logtrace.ThreadLocalLogTrace;
 import org.springframework.boot.SpringApplication;
@@ -18,6 +19,7 @@ import org.springframework.context.annotation.Import;
 //@Import(BeanPostProcessorConfig.class)
 //@Import(AutoProxyConfig.class)
 @Import(AopConfig.class)
+//@Import(LogTraceAspect.class)
 @SpringBootApplication(scanBasePackages = "hello.proxy.app")
 /*
 컴포넌트 스캔을 시작할 위치를 지정한다 주의
