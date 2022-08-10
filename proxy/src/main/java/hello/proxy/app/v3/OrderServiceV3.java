@@ -1,5 +1,6 @@
 package hello.proxy.app.v3;
 
+import hello.proxy.annotation.Trace;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -11,6 +12,7 @@ public class OrderServiceV3 {
         this.orderRepository = orderRepository;
     }
 
+    @Trace
     public void orderItem(String itemId) {
         orderRepository.save(itemId);
     }

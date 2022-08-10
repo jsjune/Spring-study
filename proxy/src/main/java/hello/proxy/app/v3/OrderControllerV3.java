@@ -1,5 +1,6 @@
 package hello.proxy.app.v3;
 
+import hello.proxy.annotation.Trace;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ public class OrderControllerV3 {
         this.orderService = orderService;
     }
 
+    @Trace
     @GetMapping("/v3/request")
     public String request(String itemId) {
         orderService.orderItem(itemId);

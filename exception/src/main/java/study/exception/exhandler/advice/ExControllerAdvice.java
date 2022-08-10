@@ -12,6 +12,7 @@ import study.exception.exhandler.ErrorResult;
 @Slf4j
 @RestControllerAdvice(basePackages = "study.exception.api")
 public class ExControllerAdvice {
+
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(IllegalArgumentException.class)
     public ErrorResult illegalExHandle(IllegalArgumentException e) {
