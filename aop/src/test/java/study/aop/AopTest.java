@@ -8,10 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import study.aop.order.OrderRepository;
 import study.aop.order.OrderService;
-import study.aop.order.aop.AspectV3;
-import study.aop.order.aop.AspectV4;
-import study.aop.order.aop.AspectV5;
-import study.aop.order.aop.AspectV6Advice;
+import study.aop.order.aop.*;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -33,6 +30,8 @@ public class AopTest {
 
     @Test
     void aopInfo() {
+        log.info("orderService : {}",orderService.getClass());
+        log.info("orderRepository : {}",orderRepository.getClass());
         log.info("isAopProxy, orderService={}", AopUtils.isAopProxy(orderService));
         log.info("isAopProxy, orderRepository={}", AopUtils.isAopProxy(orderRepository));
     }
