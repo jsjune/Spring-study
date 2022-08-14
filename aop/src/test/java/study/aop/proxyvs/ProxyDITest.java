@@ -15,7 +15,6 @@ import study.aop.proxyvs.code.ProxyDIAspect;
 @SpringBootTest
 @Import(ProxyDIAspect.class)
 public class ProxyDITest {
-
     @Autowired
     MemberService memberService;
     @Autowired

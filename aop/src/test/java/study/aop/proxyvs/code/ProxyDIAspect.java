@@ -8,7 +8,6 @@ import org.aspectj.lang.annotation.Before;
 @Slf4j
 @Aspect
 public class ProxyDIAspect {
-
     @Before("execution(* study.aop..*.*(..))")
     public void doTrace(JoinPoint joinPoint) {
         log.info("[proxyDIAdvice] {}", joinPoint.getSignature());
