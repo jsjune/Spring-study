@@ -1,6 +1,7 @@
 package study.core2.member;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
