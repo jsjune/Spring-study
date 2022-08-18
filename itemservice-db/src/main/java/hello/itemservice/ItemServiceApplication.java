@@ -21,7 +21,7 @@ public class ItemServiceApplication {
 	}
 
 	@Bean
-//	@Profile("local")
+	@Profile("local")
 	public TestDataInit testDataInit(ItemRepository itemRepository) {
 		return new TestDataInit(itemRepository);
 	}
