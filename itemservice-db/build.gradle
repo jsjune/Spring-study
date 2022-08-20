@@ -29,14 +29,28 @@ dependencies {
 	testCompileOnly 'org.projectlombok:lombok'
 	testAnnotationProcessor 'org.projectlombok:lombok'
 
-	//JdbcTemplate 추가
-	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	//H2 데이터베이스 추가
 	runtimeOnly 'com.h2database:h2'
+	//JdbcTemplate 추가
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	//MyBatis 추가
-	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
+	//JPA, 스프링 데이터 JPA 추가
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	//Querydsl 추가
+	implementation 'com.querydsl:querydsl-jpa'
+	annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jpa"
+	annotationProcessor "jakarta.annotation:jakarta.annotation-api"
+	annotationProcessor "jakarta.persistence:jakarta.persistence-api"
+
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+//Querydsl 추가, 자동 생성된 Q클래스 gradle clean으로 제거
+clean {
+	delete file('src/main/generated')
 }
