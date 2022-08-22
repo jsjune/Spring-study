@@ -1,19 +1,19 @@
 package book.object.chapter01.step02;
 
 public class Bag {
-    private Long amount;
+    private Long amount; //현금
     private Invitation invitation;
     private Ticket ticket;
 
-    // 초대장 없이 현금만 보관하는 경우
-    public Bag(long amount) {
-        this(amount, null);
+    //현금만 가지고 있다.
+    public Bag(Long amount) {
+        this(null, amount);
     }
 
-    // 현금과 초대장을 함께 보관하는 경우
-    public Bag(long amount, Invitation invitation) {
-        this.amount = amount;
+    //현금과 초대장을 함께 가지고 있다.
+    public Bag(Invitation invitation, long amount) {
         this.invitation = invitation;
+        this.amount = amount;
     }
 
     public boolean hasInvitation() {
@@ -25,7 +25,7 @@ public class Bag {
     }
 
     public void setTicket(Ticket ticket) {
-        this.ticket=ticket;
+        this.ticket = ticket;
     }
 
     public void minusAmount(Long amount) {
@@ -35,5 +35,4 @@ public class Bag {
     public void plusAmount(Long amount) {
         this.amount += amount;
     }
-
 }

@@ -1,4 +1,4 @@
-package book.object.chapter01.step01;
+package book.object.chapter01.step03;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,15 +13,15 @@ public class TicketOffice {
         this.tickets.addAll(Arrays.asList(tickets));
     }
 
-    public Ticket getTicket() {
+    public void sellTicketTo(Audience audience) {
+        plusAmount(audience.buy(getTicket()));
+    }
+
+    private Ticket getTicket() {
         return tickets.remove(0);
     }
 
-    public void minusAmount(Long amount) {
-        this.amount -= amount;
-    }
-
-    public void plusAmount(long amount) {
+    private void plusAmount(long amount) {
         this.amount += amount;
     }
 }
