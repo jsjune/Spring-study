@@ -1,12 +1,15 @@
 package sql.practice.jpql;
 
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
 @Getter @Setter
+@NoArgsConstructor
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,9 +21,11 @@ public class Member {
     @JoinColumn(name = "TEAM_ID")
     private Team team;
 
-    public void insertTeam(Team team) {
+    @Builder
+    public Member(String username, int age, Team team) {
+        this.username = username;
+        this.age = age;
         this.team = team;
-        team.getMembers().add(this);
     }
 
     @Override

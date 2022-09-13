@@ -15,7 +15,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @SpringBootTest
-@Transactional
+//@Transactional
 public class Prac {
 
     @PersistenceUnit
@@ -39,13 +39,13 @@ public class Prac {
             team2.setName("팀C");
             Member member = new Member();
             member.setUsername("member1");
-            member.insertTeam(team);
+//            member.insertTeam(team);
             Member member1 = new Member();
             member1.setUsername("member2");
-            member1.insertTeam(team);
+//            member1.insertTeam(team);
             Member member2 = new Member();
             member2.setUsername("member3");
-            member2.insertTeam(team1);
+//            member2.insertTeam(team1);
             Member member3 = new Member();
             member3.setUsername("member4");
 
