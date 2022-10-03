@@ -51,12 +51,12 @@ public class StreamEx1 {
         intStream02.forEach(i -> System.out.print(i + " "));
         System.out.println();
 
-        IntStream intsRandom01 = new Random().ints();
-        intsRandom01.limit(5).forEach(i -> System.out.print(i + " "));
+        IntStream intRandom01 = new Random().ints();
+        intRandom01.limit(5).forEach(i -> System.out.print(i + " "));
         System.out.println();
 
-        IntStream intsRandom02 = new Random().ints(3);
-        intsRandom02.forEach(i -> System.out.print(i + " "));
+        IntStream intRandom02 = new Random().ints(3);
+        intRandom02.forEach(i -> System.out.print(i + " "));
         System.out.println();
 
         System.out.println("================================================");
@@ -82,6 +82,7 @@ public class StreamEx1 {
 
         Stream<String> generateString01 = Stream.generate(() -> "Good company is best solution");
         generateString01.limit(3).forEach(i -> System.out.print(i + " "));
+        System.out.println();
 
         System.out.println("================================================");
 
