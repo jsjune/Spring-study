@@ -95,6 +95,7 @@ class StudyServiceTest {
     void stubbingTest() {
         // Given
         StudyService studyService = new StudyService(memberService, studyRepository);
+        assertNotNull(studyService);
 
         Member member = new Member();
         member.setId(1L);
@@ -110,11 +111,12 @@ class StudyServiceTest {
 
         // When
         studyService.createNewStudy(1L, study);
+        System.out.println(studyService.createNewStudy(1L, study).getName());
 
         // Then
         assertEquals(member.getId(), study.getOwnerId());
 //        verify(memberService, times(1)).notify(study);
-        then(memberService).should(times(1)).notify(study);
+        then(memberService).should(times(2)).notify(study);
 //        verifyNoMoreInteractions(memberService);
         then(memberService).shouldHaveNoMoreInteractions();
 
