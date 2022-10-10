@@ -20,4 +20,5 @@ public class Follow {
 
     @ManyToOne
     private User follower;
+
 }
