@@ -11,7 +11,7 @@ public class BreadthFirstSearch {
         q.offer(root);
         int L = 0;
         while (!q.isEmpty()) {
-            int len = q.size();
+            int len = q.size(); //1
             System.out.print(L + " : ");
             for (int i = 0; i < len; i++) {
                 Node cur = q.poll();
