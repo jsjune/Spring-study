@@ -1,4 +1,5 @@
 package book.object.chapter02;
 
-public class DiscountCondition {
+public interface DiscountCondition {
+    boolean isSatisfiedBy(Screening screening);
 }

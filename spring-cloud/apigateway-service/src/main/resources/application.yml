@@ -13,11 +13,13 @@ eureka:
 spring:
   application:
     name: gateway-service
+    
   rabbitmq:
     host: 127.0.0.1
     port: 5672
     username: admin
     password: 1234
+
   cloud:
     gateway:
       default-filters:

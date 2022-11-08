@@ -33,9 +33,9 @@ public class SecurityConfig {
         http.authorizeRequests().antMatchers("/actuator/**").permitAll();
         http.authorizeRequests().antMatchers("/error/**").permitAll()
                 .antMatchers("/**")
-                .access("hasIpAddress('host.docker.internal')")
+//                .access("hasIpAddress('host.docker.internal')")
 //                .access("hasIpAddress('192.168.56.1')")
-//                .access("hasIpAddress('127.0.0.1')")
+                .access("hasIpAddress('127.0.0.1')")
 //                .hasIpAddress("127.0.0.1")
                 .and()
                 .addFilter(authenticationFilter);

@@ -1,6 +1,6 @@
 encrypt:
 #  key: spring-cloud-pw
   key-store:
-    location: file:///${user.home}\Desktop\inflearn\spring-cloud\Work\keystore\apiEncryptionKey.jks
+    location: file:///${user.home}\Desktop\inflearn\spring-study\spring-cloud\Work\keystore\apiEncryptionKey.jks
     password: test1234
     alias: apiEncryptionKey
