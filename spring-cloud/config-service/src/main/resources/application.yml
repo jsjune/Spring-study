@@ -7,8 +7,8 @@ spring:
   rabbitmq:
     host: 127.0.0.1
     port: 5672
-    username: admin
-    password: 1234
+    username: guest
+    password: guest
   profiles:
     active: native
   cloud:
@@ -16,6 +16,7 @@ spring:
       server:
         native:
           search-locations: file:///${user.home}\Desktop\inflearn\spring-study\spring-cloud\Work\native-file-repo
+#          search-locations: file:///${user.home}/Desktop/inflearn/spring-study/spring-cloud/Work/native-file-repo
 #        git:
 #          uri: file:///C:\Users\user\Desktop\inflearn\spring-cloud\Work\git-local-repo
 
