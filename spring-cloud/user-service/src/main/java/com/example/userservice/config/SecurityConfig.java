@@ -35,7 +35,7 @@ public class SecurityConfig {
                 .antMatchers("/**")
 //                .access("hasIpAddress('host.docker.internal')")
 //                .access("hasIpAddress('192.168.56.1')")
-                .access("hasIpAddress('127.0.0.1')")
+                .access("hasIpAddress('172.18.0.5')") //gateway ip
 //                .hasIpAddress("127.0.0.1")
                 .and()
                 .addFilter(authenticationFilter);
