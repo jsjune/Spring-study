@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 import java.util.List;
 
+/* 동기화를 위한 객체 */
+
 @Service
 @Slf4j
 @RequiredArgsConstructor

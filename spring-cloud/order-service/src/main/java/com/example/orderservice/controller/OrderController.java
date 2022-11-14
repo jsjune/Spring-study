@@ -54,7 +54,7 @@ public class OrderController {
 
         /* send this order to the kafka */
         kafkaProducer.send("example-catalog-topic", orderDto);
-//        orderProducer.send("orders", orderDto);
+//        orderProducer.send("orders", orderDto); // 동기화관련
 
 //        ResponseOrder returnValue = modelMapper.map(orderDto, ResponseOrder.class);
         log.info("after added orders data");
