@@ -17,7 +17,8 @@ public abstract class OAuth2ProviderUser implements ProviderUser {
     private OAuth2User oAuth2User;
     private ClientRegistration clientRegistration;
 
-    public OAuth2ProviderUser(Map<String, Object> attributes, OAuth2User oAuth2User, ClientRegistration clientRegistration){
+    public OAuth2ProviderUser(Map<String, Object> attributes, OAuth2User oAuth2User,
+        ClientRegistration clientRegistration) {
         this.attributes = attributes;
         this.oAuth2User = oAuth2User;
         this.clientRegistration = clientRegistration;
@@ -30,7 +31,7 @@ public abstract class OAuth2ProviderUser implements ProviderUser {
 
     @Override
     public String getEmail() {
-        return (String)attributes.get("email");
+        return (String) attributes.get("email");
     }
 
     @Override
@@ -40,6 +41,8 @@ public abstract class OAuth2ProviderUser implements ProviderUser {
 
     @Override
     public List<? extends GrantedAuthority> getAuthorities() {
-        return oAuth2User.getAuthorities().stream().map(authority -> new SimpleGrantedAuthority(authority.getAuthority())).collect(Collectors.toList());
+        return oAuth2User.getAuthorities().stream()
+            .map(authority -> new SimpleGrantedAuthority(authority.getAuthority()))
+            .collect(Collectors.toList());
     }
 }

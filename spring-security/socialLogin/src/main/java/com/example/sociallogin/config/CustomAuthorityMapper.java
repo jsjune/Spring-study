@@ -12,7 +12,8 @@ public class CustomAuthorityMapper implements GrantedAuthoritiesMapper {
     private String prefix = "ROLE_";
 
     @Override
-    public Collection<? extends GrantedAuthority> mapAuthorities(Collection<? extends GrantedAuthority> authorities) {
+    public Collection<? extends GrantedAuthority> mapAuthorities(
+        Collection<? extends GrantedAuthority> authorities) {
 
         HashSet<GrantedAuthority> mapped = new HashSet<>(authorities.size());
         for (GrantedAuthority authority : authorities) {

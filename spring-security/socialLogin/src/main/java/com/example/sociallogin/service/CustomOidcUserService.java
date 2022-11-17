@@ -13,7 +13,8 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CustomOidcUserService extends AbstractOAuth2UserService implements OAuth2UserService<OidcUserRequest, OidcUser> {
+public class CustomOidcUserService extends AbstractOAuth2UserService implements
+    OAuth2UserService<OidcUserRequest, OidcUser> {
 
     @Override
     public OidcUser loadUser(OidcUserRequest userRequest) throws OAuth2AuthenticationException {
@@ -22,7 +23,7 @@ public class CustomOidcUserService extends AbstractOAuth2UserService implements 
         OAuth2UserService<OidcUserRequest, OidcUser> oidcUserService = new OidcUserService();
         OidcUser oidcUser = oidcUserService.loadUser(userRequest);
 
-        ProviderUser providerUser = super.providerUser(clientRegistration,oidcUser);
+        ProviderUser providerUser = super.providerUser(clientRegistration, oidcUser);
         super.register(providerUser, userRequest);
 
         return oidcUser;

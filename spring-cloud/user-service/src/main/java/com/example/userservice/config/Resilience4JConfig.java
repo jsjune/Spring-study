@@ -12,7 +12,7 @@ import java.time.Duration;
 
 @Configuration
 public class Resilience4JConfig {
-    @Bean
+    @Bean`
     public Customizer<Resilience4JCircuitBreakerFactory> globalCustomConfiguration() {
         CircuitBreakerConfig circuitBreakerConfig = CircuitBreakerConfig.custom()
                 .failureRateThreshold(4)

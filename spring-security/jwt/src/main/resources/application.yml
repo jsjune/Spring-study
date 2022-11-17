@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/security
+    username: root
+    password: 1234
+  redis:
+    lettuce:
+      pool:
+        max-active: 5 # pool에 할당될 수 있는 최대 커넥션 수(음수: 무제한)
+        max-idle: 5 # pool의 idle 최대 커넥션 수(음수: 무제한)
+        min-idle: 2 # pool에서 관리하는 idle 최소 커넥션 수
+    host: 127.0.0.1
+    port: 6379

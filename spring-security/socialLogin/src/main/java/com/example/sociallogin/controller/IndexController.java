@@ -13,14 +13,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class IndexController {
 
     @GetMapping("/")
-    public String index(Model model, Authentication authentication,  @AuthenticationPrincipal OAuth2User oAuth2User){
-        OAuth2AuthenticationToken authenticationToken = (OAuth2AuthenticationToken)authentication;
-        if(authenticationToken != null){
+    public String index(Model model, Authentication authentication,
+        @AuthenticationPrincipal OAuth2User oAuth2User) {
+        OAuth2AuthenticationToken authenticationToken = (OAuth2AuthenticationToken) authentication;
+        if (authenticationToken != null) {
             Map<String, Object> attributes = oAuth2User.getAttributes();
-            String userName = (String)attributes.get("name");
-            if(authenticationToken.getAuthorizedClientRegistrationId().equals("naver")){
-                Map<String, Object> response = (Map)attributes.get("response");
-                userName = (String)response.get("name");
+            String userName = (String) attributes.get("name");
+            if (authenticationToken.getAuthorizedClientRegistrationId().equals("naver")) {
+                Map<String, Object> response = (Map) attributes.get("response");
+                userName = (String) response.get("name");
             }
             model.addAttribute("user", userName);
         }

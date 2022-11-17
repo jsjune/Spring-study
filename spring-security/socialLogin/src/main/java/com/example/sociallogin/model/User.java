@@ -13,6 +13,7 @@ import org.springframework.security.core.GrantedAuthority;
 @Data
 @NoArgsConstructor
 public class User {
+
     private String registrationId;
     private String id;
     private String username;

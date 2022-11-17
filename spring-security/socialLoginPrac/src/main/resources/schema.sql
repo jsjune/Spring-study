@@ -1,0 +1,1 @@
+update table users convert to charset utf8;
