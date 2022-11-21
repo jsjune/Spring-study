@@ -37,19 +37,25 @@ public class RedisController {
 
     @PostMapping("/save")
     public void save() {
-        String id = "log";
         LocalDateTime refreshTime = LocalDateTime.of(2018, 5, 26, 0, 0);
         Point point = Point.builder()
-            .id(id)
+            .id("a")
+            .amount(1000L)
+            .refreshTime(refreshTime)
+            .build();
+
+        Point point2 = Point.builder()
+            .id("b")
             .amount(1000L)
             .refreshTime(refreshTime)
             .build();
         pointRedisRepository.save(point);
+        pointRedisRepository.save(point2);
     }
 
     @GetMapping("/show")
     public void show() {
-        String id = "log";
+        String id = "a";
         Point savedPoint = pointRedisRepository.findById(id).get();
         System.out.println("savedPoint = " + savedPoint.getAmount());
     }
