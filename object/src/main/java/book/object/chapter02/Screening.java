@@ -26,6 +26,7 @@ public class Screening {
     }
 
     public Reservation reserve(Customer customer, int audienceCount) {
+//        return null;
         return Reservation.builder()
                 .customer(customer)
                 .screening(this)

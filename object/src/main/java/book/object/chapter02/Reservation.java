@@ -4,7 +4,7 @@ import lombok.Builder;
 
 public class Reservation {
     private Customer customer; //고객
-    private Screening screening; //사영 정보
+    private Screening screening; //상영 정보
     private Money fee; //예매 요금
     private int audienceCount; //인원 수
 
