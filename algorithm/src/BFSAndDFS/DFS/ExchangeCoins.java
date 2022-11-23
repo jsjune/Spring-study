@@ -1,4 +1,4 @@
-package BFSAndDFS;
+package BFSAndDFS.DFS;
 
 import java.util.Arrays;
 import java.util.Collections;

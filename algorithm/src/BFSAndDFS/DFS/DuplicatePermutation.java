@@ -1,4 +1,4 @@
-package BFSAndDFS;
+package BFSAndDFS.DFS;
 
 /* 입력예제     출력예제
 *   3 2         1 1
