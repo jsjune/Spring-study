@@ -29,7 +29,7 @@ public class OrderApiController {
     public List<OrderDto> ordersV2() {
         List<Order> orders = orderRepository.findAllString(new OrderSearch());
         List<OrderDto> result = orders.stream()
-                .map(o -> new OrderDto(o))
+                .map(OrderDto::new)
                 .collect(Collectors.toList());
         return result;
     }

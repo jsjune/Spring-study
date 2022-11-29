@@ -29,6 +29,13 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     implementation 'org.springdoc:springdoc-openapi-ui:1.6.13'
+
+    // https://mvnrepository.com/artifact/org.modelmapper/modelmapper
+    implementation 'org.modelmapper:modelmapper:3.0.0'
+
+    // https://mvnrepository.com/artifact/org.jeasy/easy-random-core
+    testImplementation 'org.jeasy:easy-random-core:5.0.0'
+
 }
 
 tasks.named('test') {

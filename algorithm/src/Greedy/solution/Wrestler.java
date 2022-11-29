@@ -1,7 +1,6 @@
-package Greedy;
+package Greedy.solution;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
 
