@@ -36,6 +36,9 @@ dependencies {
     // https://mvnrepository.com/artifact/org.jeasy/easy-random-core
     testImplementation 'org.jeasy:easy-random-core:5.0.0'
 
+    // https://mvnrepository.com/artifact/org.json/json
+    implementation 'org.json:json:20220924'
+
 }
 
 tasks.named('test') {
