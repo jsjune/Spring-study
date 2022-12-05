@@ -14,4 +14,6 @@ public interface PostRepositoryCustom {
     void bulkInsert(List<Post> posts);
 
     List<Post> cursorPageFindAllByMemberId(Long memberId, CursorRequest cursorRequest);
+
+    List<Post> cursorPageFindAllByInMemberId(List<Long> memberId, CursorRequest cursorRequest);
 }

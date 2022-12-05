@@ -18,7 +18,7 @@ public class FollowWriteService {
 
         Follow follow = Follow.builder()
             .fromMemberId(fromMember.getId())
-            .tomMemberId(toMember.getId())
+            .toMemberId(toMember.getId())
             .build();
         followRepository.save(follow);
     }

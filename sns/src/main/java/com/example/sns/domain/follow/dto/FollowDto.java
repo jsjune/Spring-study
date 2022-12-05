@@ -9,6 +9,6 @@ import lombok.Setter;
 public class FollowDto {
     private Long id;
     private Long fromMemberId;
-    private Long tomMemberId;
+    private Long toMemberId;
     private LocalDateTime createdAt;
 }

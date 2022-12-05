@@ -29,7 +29,7 @@ public class Follow {
 //    @JoinColumn(name = "TO_MEMBER_ID")
 //    private Member toMember;
     private Long fromMemberId;
-    private Long tomMemberId;
+    private Long toMemberId;
 
     private LocalDateTime createdAt;
 
@@ -41,9 +41,10 @@ public class Follow {
 //    }
 
     @Builder
-    public Follow(Long fromMemberId, Long tomMemberId, LocalDateTime createdAt) {
+    public Follow(Long fromMemberId, Long toMemberId, LocalDateTime createdAt) {
         this.fromMemberId = fromMemberId;
-        this.tomMemberId = tomMemberId;
+        this.toMemberId = toMemberId;
         this.createdAt = createdAt == null ? LocalDateTime.now() : createdAt;
     }
+
 }

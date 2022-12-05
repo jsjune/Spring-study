@@ -2,13 +2,16 @@ package com.example.sns.domain.post.entity;
 
 import com.example.sns.domain.member.entity.Member;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,6 +19,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
+@Table(indexes = @Index(name = "i_timeline_id", columnList = "TIMELINE_ID"))
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Timeline {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

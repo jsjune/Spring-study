@@ -7,4 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface FollowRepository extends JpaRepository<Follow,Long> {
 
     List<Follow> findAllByFromMemberId(Long memberId);
+
+    List<Follow> findAllByToMemberId(Long memberId);
 }

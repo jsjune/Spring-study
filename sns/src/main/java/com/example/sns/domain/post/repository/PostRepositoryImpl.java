@@ -54,9 +54,20 @@ public class PostRepositoryImpl implements PostRepositoryCustom{
     @Override
     public List<Post> cursorPageFindAllByMemberId(Long memberId, CursorRequest cursorRequest) {
         List<Post> result = queryFactory
-            .select(post)
-            .from(post)
+            .selectFrom(post)
             .where(post.memberId.eq(memberId), idLessThan(cursorRequest.key()))
+            .orderBy(post.id.desc())
+            .limit(cursorRequest.size())
+            .fetch();
+        return result;
+    }
+
+    @Override
+    public List<Post> cursorPageFindAllByInMemberId(List<Long> memberId,
+        CursorRequest cursorRequest) {
+        List<Post> result = queryFactory
+            .selectFrom(post)
+            .where(post.memberId.in(memberId), idLessThan(cursorRequest.key()))
             .orderBy(post.id.desc())
             .limit(cursorRequest.size())
             .fetch();

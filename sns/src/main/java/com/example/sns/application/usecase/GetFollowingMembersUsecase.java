@@ -18,7 +18,7 @@ public class GetFollowingMembersUsecase {
 
     public List<MemberDto> execute(Long memberId) {
         List<FollowDto> followings = followReadService.getFollowings(memberId);
-        List<Long> followingMemberIds = followings.stream().map(FollowDto::getTomMemberId).toList();
+        List<Long> followingMemberIds = followings.stream().map(FollowDto::getToMemberId).toList();
         return memberReadService.getMembers(followingMemberIds);
     }
 }
