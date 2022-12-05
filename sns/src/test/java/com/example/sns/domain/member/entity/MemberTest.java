@@ -36,7 +36,7 @@ class MemberTest {
         Assertions.assertThrows(
             IllegalArgumentException.class,
             () -> member.changeNickname(over)
-        );
+         );
 
     }
 }
