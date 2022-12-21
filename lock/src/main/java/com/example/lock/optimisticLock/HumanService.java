@@ -16,10 +16,9 @@ public class HumanService {
     }
 
     @Transactional
-    public int decreaseMoney(String name, int money) throws IllegalAccessException {
+    public void decreaseMoney(String name, int money) throws IllegalAccessException {
         Human human = humanRepository.findByName(name);
         human.decreaseMoney(money);
-        return human.getMoney();
     }
 
 }
