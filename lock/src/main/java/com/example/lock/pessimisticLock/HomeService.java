@@ -19,10 +19,9 @@ public class HomeService {
     }
 
     @Transactional
-    public int decreasePrice(String name, int price) throws IllegalAccessException {
+    public void decreasePrice(String name, int price) throws IllegalAccessException {
 //        Home home = homeRepository.findByName(name);
         Home home = homeRepository.findWithNameForUpdate(name);
         home.decreasePrice(price);
-        return home.getPrice();
     }
 }
