@@ -12,8 +12,6 @@ import org.springframework.web.server.ResponseStatusException;
 import study.exception.exception.BadRequestException;
 import study.exception.exception.UserException;
 
-import java.lang.reflect.ParameterizedType;
-
 @Slf4j
 @RestController
 public class ApiExceptionController {
