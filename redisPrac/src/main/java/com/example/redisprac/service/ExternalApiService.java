@@ -5,8 +5,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ExternalApiService {
-//    @Cacheable(cacheNames = "userAgeCache", key = "#userId")
+//    @Cacheable(cacheNames = "userNameCache", key = "#userId")
     public String getUserName(String userId) {
+        // 외부 서비스나 DB 호출
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
