@@ -10,6 +10,7 @@ import java.util.StringTokenizer;
 public class Bj2606 {
     static int node[][];
     static int check[];
+
     static void bfs(int start) {
         Queue<Integer> queue = new LinkedList<>();
         check[start]=1;
