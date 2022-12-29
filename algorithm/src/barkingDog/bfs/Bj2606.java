@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
+
 /* 바이러스 */
 public class Bj2606 {
     static int node[][];
