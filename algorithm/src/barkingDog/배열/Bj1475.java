@@ -3,6 +3,7 @@ package barkingDog.배열;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
 /* 방 번호 */
 public class Bj1475 {
 
