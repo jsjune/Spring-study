@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /* 적록색약 */
-/* DFS로 풀어볼것 */
 public class Bj10026_2 {
 
     static int n, cnt = 0;
@@ -71,5 +70,4 @@ public class Bj10026_2 {
         }
         System.out.println(sb);
     }
-
 }
