@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
+/* DFS와 BFS */
 public class Bj1260 {
     static int[][] arr;
     static int[] check;
