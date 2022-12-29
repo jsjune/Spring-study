@@ -7,7 +7,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /* 적록색약 */
-/* DFS로 풀어볼것 */
 public class Bj10026 {
 
     static int n, cnt = 0;
