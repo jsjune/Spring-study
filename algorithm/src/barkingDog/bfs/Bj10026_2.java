@@ -72,14 +72,4 @@ public class Bj10026_2 {
         System.out.println(sb);
     }
 
-    private static class Point {
-
-        int x;
-        int y;
-
-        public Point(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-    }
 }
