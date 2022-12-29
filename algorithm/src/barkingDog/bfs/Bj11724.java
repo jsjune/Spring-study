@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+/* 연결 요소의 개수 */
 public class Bj11724 {
 
     static int[][] arr;
