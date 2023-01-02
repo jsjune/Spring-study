@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
-
+/* 토마토 */
 public class Bj7569 {
 
     static int[][][] board,dis;
