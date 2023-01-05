@@ -1,0 +1,48 @@
+package barkingDog.정렬1;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+
+/* 배열 합치기 */
+public class Bj11728 {
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        StringBuilder sb = new StringBuilder();
+        int a = Integer.parseInt(st.nextToken());
+        int b = Integer.parseInt(st.nextToken());
+        int[] arr = new int[a];
+        int[] arr2 = new int[b];
+        st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < a; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
+        }
+
+        st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < b; i++) {
+            arr2[i] = Integer.parseInt(st.nextToken());
+        }
+        int sum = Arrays.stream(arr2).sum();
+        int asInt = Arrays.stream(arr2).max().getAsInt();
+
+        int[] answer = new int[a + b];
+        int aidx = 0, bidx = 0;
+        for (int i = 0; i < a + b; i++) {
+            if (bidx == b) {
+                answer[i] = arr[aidx++];
+            }else if (aidx == a) {
+                answer[i] = arr2[bidx++];
+            }else if (arr[aidx] <= arr2[bidx]) {
+                answer[i]=arr[aidx++];
+            } else if (arr[aidx] >= arr2[bidx]) {
+                answer[i] = arr2[bidx++];
+            }
+            sb.append(answer[i] + " ");
+        }
+        System.out.println(sb);
+    }
+}
