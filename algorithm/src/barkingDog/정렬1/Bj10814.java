@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.StringTokenizer;
-
+/* 나이순 정렬 */
 class Member implements Comparable<Member> {
 
     public int age;

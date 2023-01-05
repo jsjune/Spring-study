@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
-
+/* 좌표 정렬하기2 */
 public class Bj11651 {
 
     public static void main(String[] args) throws IOException {
