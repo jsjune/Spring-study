@@ -25,7 +25,7 @@ public class RedisCacheConfig {
 
         HashMap<String, RedisCacheConfiguration> configMap = new HashMap<>();
         configMap.put("userAgeCache", RedisCacheConfiguration.defaultCacheConfig()
-                .entryTtl(Duration.ofSeconds(5)));  // 특정 캐시에 대한 TTL
+                .entryTtl(Duration.ofDays(1)));  // 특정 캐시에 대한 TTL
 
         return RedisCacheManager
                 .RedisCacheManagerBuilder

@@ -40,6 +40,7 @@ public class SecurityConfig {
             .addFilter(jwtAuthenticationFilter)
             .addFilter(getJwtAuthorizationFilter(authenticationManager, userRepository))
             .authorizeRequests()
+            .antMatchers("/").permitAll()
             .antMatchers("/api/v1/user/**")
             .access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')")
             .antMatchers("/api/v1/manager/**")

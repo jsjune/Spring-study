@@ -21,15 +21,15 @@ spring:
         min-idle: 2 # pool에서 관리하는 idle 최소 커넥션 수
     host: 127.0.0.1
     port: 6379
-  elasticsearch:
-    rest:
-      urls: http://localhost:9200
+#  elasticsearch:
+#    rest:
+#      urls: http://localhost:9200
 
-logging:
-  level:
-    org:
-      springframework:
-        data:
-          elasticsearch:
-            client:
-              WIRE= TRACE
+#logging:
+#  level:
+#    org:
+#      springframework:
+#        data:
+#          elasticsearch:
+#            client:
+#              WIRE= TRACE
