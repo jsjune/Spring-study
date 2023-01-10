@@ -27,6 +27,7 @@ public class Bj2579 {
         for (int i = 1; i <= n; i++) {
             arr[i] = Integer.parseInt(br.readLine());
         }
+
         System.out.println(solution(n, arr));
     }
 }
