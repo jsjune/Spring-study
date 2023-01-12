@@ -4,7 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-/* 이항 계수 2*/
+/* 이항 계수 2 */
+/* 테스트 */
 public class Bj11051 {
     public static void main(String[] args) throws IOException, IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
