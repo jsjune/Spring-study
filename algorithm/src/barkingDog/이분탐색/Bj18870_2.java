@@ -1,4 +1,4 @@
-package barkingDog.수찾기;
+package barkingDog.이분탐색;
 
 import java.io.BufferedReader;
 import java.io.IOException;
