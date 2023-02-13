@@ -20,8 +20,8 @@ public class HomeService {
 
     @Transactional
     public void decreasePrice(String name, int price) throws IllegalAccessException {
-//        Home home = homeRepository.findByName(name);
-        Home home = homeRepository.findWithNameForUpdate(name);
+        Home home = homeRepository.findByName(name);
+//        Home home = homeRepository.findWithNameForUpdate(name);
         home.decreasePrice(price);
     }
 }

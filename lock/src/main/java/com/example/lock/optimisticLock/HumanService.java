@@ -20,5 +20,4 @@ public class HumanService {
         Human human = humanRepository.findByName(name);
         human.decreaseMoney(money);
     }
-
 }
