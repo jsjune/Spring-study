@@ -1,4 +1,4 @@
-package com.example.redisprac;
+package com.example.redisprac.caching;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;

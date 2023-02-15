@@ -1,7 +1,6 @@
-package com.example.redisprac.dto;
+package com.example.redisprac.caching.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.io.Serializable;
 
 public class UserProfile {
     @JsonProperty

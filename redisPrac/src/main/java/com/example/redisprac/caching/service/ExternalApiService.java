@@ -1,4 +1,4 @@
-package com.example.redisprac.service;
+package com.example.redisprac.caching.service;
 
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;

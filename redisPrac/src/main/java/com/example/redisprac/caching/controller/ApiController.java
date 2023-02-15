@@ -1,7 +1,7 @@
-package com.example.redisprac.controller;
+package com.example.redisprac.caching.controller;
 
-import com.example.redisprac.dto.UserProfile;
-import com.example.redisprac.service.UserService;
+import com.example.redisprac.caching.dto.UserProfile;
+import com.example.redisprac.caching.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

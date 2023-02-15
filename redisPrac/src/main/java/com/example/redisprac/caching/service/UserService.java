@@ -1,6 +1,6 @@
-package com.example.redisprac.service;
+package com.example.redisprac.caching.service;
 
-import com.example.redisprac.dto.UserProfile;
+import com.example.redisprac.caching.dto.UserProfile;
 import java.util.concurrent.TimeUnit;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

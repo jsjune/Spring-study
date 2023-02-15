@@ -1,4 +1,4 @@
-package com.example.redisprac;
+package com.example.redisprac.caching;
 
 import java.util.HashMap;
 import javax.servlet.http.HttpSession;
