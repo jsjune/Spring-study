@@ -17,7 +17,7 @@ public class RedisCacheConfig {
     public RedisCacheManager cacheManager(RedisConnectionFactory connectionFactory) {
         RedisCacheConfiguration configuration = RedisCacheConfiguration.defaultCacheConfig()
                 .disableCachingNullValues()
-                .entryTtl(Duration.ofSeconds(10))   // 기본 TTL
+                .entryTtl(Duration.ofSeconds(60000))   // 기본 TTL
                 .computePrefixWith(CacheKeyPrefix.simple())
                 .serializeKeysWith(
                         RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer())
