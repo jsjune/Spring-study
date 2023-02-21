@@ -26,3 +26,8 @@ spring:
 kogpt-api:
   host: "https://api.kakaobrain.com"
   endpoint: "/v1/inference/kogpt/generation"
+
+chatGPT-api:
+  host: "https://api.openai.com"
+  endpoint: "/v1/completions"
+  key: "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"

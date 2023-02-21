@@ -1,4 +1,4 @@
-package sql.practice;
+package sql.practice.chatGPT;
 
 import com.theokanning.openai.completion.CompletionRequest;
 import com.theokanning.openai.service.OpenAiService;
@@ -12,7 +12,7 @@ public class ChatGptTest {
     public static void main(String[] args) {
         OpenAiService service = new OpenAiService(apiKey);
         CompletionRequest completionRequest = CompletionRequest.builder()
-            .prompt("노트북, 마감임박, 50%할인 단어로 광고문구를 장문으로 만들어줘")
+            .prompt("노트북, 마감임박, 50%할인 단어로 광고문구를 만들어줘")
             .maxTokens(1024)
             .temperature(1.0)
             .topP(1.0)
