@@ -3,6 +3,7 @@ package baekjoon.다이나믹프로그래밍;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 /* 스티커 */
@@ -27,6 +28,7 @@ public class Bj9465 {
                 dp[0][j] = Math.max(dp[1][j - 1], dp[1][j - 2]) + arr[0][j];
                 dp[1][j] = Math.max(dp[0][j - 1], dp[0][j - 2]) + arr[1][j];
             }
+            System.out.println(Arrays.deepToString(dp));
             System.out.println(Math.max(dp[0][n], dp[1][n]));
         }
     }

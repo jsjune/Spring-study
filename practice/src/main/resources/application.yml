@@ -1,9 +1,13 @@
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/sqlprac
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
+#    url: jdbc:h2:tcp://localhost/~/sqlprac
+#    username: sa
+#    password:
+#    driver-class-name: org.h2.Driver
+
+    url: jdbc:mysql://localhost:3306/test?rewriteBatchedStatements=true&characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    username: root
+    password: 1234
 
   jpa:
     hibernate:
@@ -30,4 +34,9 @@ kogpt-api:
 chatGPT-api:
   host: "https://api.openai.com"
   endpoint: "/v1/completions"
-  key: "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"
+  key: "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"
+
+
+logging:
+  level:
+    org.springframework.jdbc.core: DEBUG
