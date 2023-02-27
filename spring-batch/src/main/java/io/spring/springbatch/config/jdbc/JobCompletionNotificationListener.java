@@ -22,7 +22,7 @@ public class JobCompletionNotificationListener {
             log.info("                JOB STARTED                 ");
             log.info("============================================");
 
-            jdbcTemplate.query("SELECT id, name, age FROM customers",
+            jdbcTemplate.query("select id, name, age from customer",
                     (rs, row) -> new Customer(
                             rs.getLong(1),
                             rs.getString(2),
@@ -39,7 +39,7 @@ public class JobCompletionNotificationListener {
             log.info("                JOB FINISHED                ");
             log.info("============================================");
 
-            jdbcTemplate.query("SELECT id, name, age FROM customers",
+            jdbcTemplate.query("select id, name, age from customer",
                     (rs, row) -> new Customer(
                             rs.getLong(1),
                             rs.getString(2),

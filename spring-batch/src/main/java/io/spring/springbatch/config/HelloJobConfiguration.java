@@ -38,7 +38,6 @@ public class HelloJobConfiguration {
                 })
                 .build();
     }
-
 //    @Bean
 //    public Step helloStep2() {
 //        return stepBuilderFactory.get(Step_2_NAME)

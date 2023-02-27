@@ -6,6 +6,7 @@ import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider;
 import org.springframework.batch.item.database.JdbcBatchItemWriter;
 import org.springframework.batch.item.database.JdbcCursorItemReader;
@@ -32,7 +33,7 @@ public class JdbcBatchJobConfiguration {
 
     @Bean
     public Job jdbcJob() {
-        return this.jobBuilderFactory.get(JOB_NAME)
+        return jobBuilderFactory.get(JOB_NAME)
                 .listener(jobCompletionNotificationListener)
                 .start(jdbcStep())
                 .build();
@@ -40,7 +41,7 @@ public class JdbcBatchJobConfiguration {
 
     @Bean
     public Step jdbcStep() {
-        return this.stepBuilderFactory.get(STEP_NAME)
+        return stepBuilderFactory.get(STEP_NAME)
                 .<Customer, Customer>chunk(CHUNK_SIZE)
                 .reader(jdbcCursorItemReader())
                 .processor(jdbcItemProcessor())
@@ -54,21 +55,33 @@ public class JdbcBatchJobConfiguration {
                 .fetchSize(CHUNK_SIZE)
                 .dataSource(dataSource)
                 .rowMapper(new BeanPropertyRowMapper<>(Customer.class))
-                .sql("SELECT id, name, age FROM customers")
+                .sql("SELECT id, name, age FROM customer")
                 .name("jdbcCursorItemReader")
                 .build();
     }
 
     @Bean
-    public CustomerItemProcessor jdbcItemProcessor() {
-        return new CustomerItemProcessor();
+    public ItemProcessor<Customer, Customer> jdbcItemProcessor(){
+        return new ItemProcessor<Customer, Customer>() {
+            @Override
+            public Customer process(Customer customer) throws Exception {
+                System.out.println("=======================");
+                System.out.println(customer);
+                System.out.println("=======================");
+                int newAge = customer.getAge() + 10;
+                final Customer transformedCustomer = new Customer(customer.getId(), customer.getName(), newAge);
+
+                log.info("Change customer.age(" + customer.getAge() + ") to " + newAge);
+                return transformedCustomer;
+            }
+        };
     }
 
     @Bean
     public JdbcBatchItemWriter<Customer> jdbcItemWriter(DataSource dataSource) {
         return new JdbcBatchItemWriterBuilder<Customer>()
-                .itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())
-                .sql("UPDATE customers SET name = :name, age = :age, WHERE id = :id")
+                .itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<Customer>())
+                .sql("UPDATE customer SET name = :name, age = :age WHERE id = :id")
                 .dataSource(dataSource)
                 .build();
     }
