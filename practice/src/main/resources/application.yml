@@ -40,3 +40,6 @@ chatGPT-api:
 logging:
   level:
     org.springframework.jdbc.core: DEBUG
+
+file:
+  dir: C:\Users\user\Desktop\aaa\
