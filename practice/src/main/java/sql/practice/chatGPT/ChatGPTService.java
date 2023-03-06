@@ -115,8 +115,8 @@ public class ChatGPTService {
         // HTTP Header 생성
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-type", "application/x-www-form-urlencoded; charset=UTF-8");
-        headers.add("X-Naver-Client-Id", "JKyg2_AJs_cmzcdbkqSM");
-        headers.add("X-Naver-Client-Secret", "PYWyVnEcRM");
+        headers.add("X-Naver-Client-Id", "aaa");
+        headers.add("X-Naver-Client-Secret", "bbb");
 
         // Body 생성
 //        String question = "do you know WW2? tell me about it";

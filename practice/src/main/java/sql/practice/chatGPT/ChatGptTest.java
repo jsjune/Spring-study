@@ -7,7 +7,7 @@ import java.time.Instant;
 
 public class ChatGptTest {
 
-    private static final String apiKey = "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";
+    private static final String apiKey = "aaa";
 
     public static void main(String[] args) {
         OpenAiService service = new OpenAiService(apiKey);

@@ -1,6 +1,6 @@
-package sql.practice.jpql;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-public interface TeamRepository extends JpaRepository<Team,Long> {
-}
+//package sql.practice.jpql;
+//
+//import org.springframework.data.jpa.repository.JpaRepository;
+//
+//public interface TeamRepository extends JpaRepository<Team,Long> {
+//}

@@ -5,7 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity
+//@Entity
 @Getter @Setter
 @Table(name = "ORDERS")
 public class Order {

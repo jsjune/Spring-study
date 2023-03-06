@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Inheritance(strategy = InheritanceType.JOINED)
-@Entity
+//@Entity
 //@DiscriminatorColumn
 public abstract class Heart {
     @Id @GeneratedValue

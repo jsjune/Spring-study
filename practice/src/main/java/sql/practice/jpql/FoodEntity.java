@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity
+//@Entity
 public class FoodEntity {
     @Id
     @GeneratedValue

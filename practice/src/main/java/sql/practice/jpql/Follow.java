@@ -7,7 +7,7 @@ import sql.practice.jpql.domain.User;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
+//@Entity
 @Setter
 @Getter
 public class Follow {

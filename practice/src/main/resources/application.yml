@@ -16,7 +16,6 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
-#        use_sql_comments: true
 
   mvc:
     pathmatch:
@@ -41,5 +40,3 @@ logging:
   level:
     org.springframework.jdbc.core: DEBUG
 
-file:
-  dir: C:\Users\user\Desktop\aaa\

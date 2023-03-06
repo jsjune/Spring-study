@@ -45,6 +45,7 @@ public class ExcelController {
     public String uploadExcel(@RequestParam("file") MultipartFile multipartFile) throws IOException {
         String origName = multipartFile.getOriginalFilename();
         String uuid = UUID.randomUUID().toString();
+        
         String extension2 = FilenameUtils.getExtension(multipartFile.getOriginalFilename());
         String savedName = uuid + "."+extension2;
         String savePath = fileDir + savedName;
@@ -60,12 +61,12 @@ public class ExcelController {
             throw new IOException("엑셀파일만 업로드 해주세요");
         }
         InputStream fileInputStream = multipartFile.getInputStream();
-        multipartFile.transferTo(new File(savePath));
+        multipartFile.transferTo(new File(savePath)); // 경로로 파일 업로드
         Workbook workbook = null;
         if (extension.equals("xlsx")) {
-            workbook = new XSSFWorkbook(fileInputStream);
+            workbook = new XSSFWorkbook(fileInputStream); // Excel 2007
         } else if (extension.equals("xls")) {
-            workbook = new HSSFWorkbook(fileInputStream);
+            workbook = new HSSFWorkbook(fileInputStream); // Excel 2003
         }
 
         Sheet worksheet = workbook.getSheetAt(0);

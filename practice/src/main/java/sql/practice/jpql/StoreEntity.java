@@ -11,7 +11,7 @@ import javax.persistence.Id;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity
+//@Entity
 public class StoreEntity {
     @Id
     @GeneratedValue
