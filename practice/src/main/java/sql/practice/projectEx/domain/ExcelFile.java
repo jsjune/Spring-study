@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
+//@Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 public class ExcelFile {

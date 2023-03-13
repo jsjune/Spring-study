@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity
+//@Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 public class GptCopy {

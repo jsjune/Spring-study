@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+//@Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Table(name = "customer_team")
