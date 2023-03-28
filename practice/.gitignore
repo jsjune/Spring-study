@@ -38,4 +38,6 @@ out/
 
 file/**
 
-**/src/main/resources/application.yml
+*.yml
+*.xml
+logs/

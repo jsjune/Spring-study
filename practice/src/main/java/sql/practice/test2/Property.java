@@ -1,19 +1,17 @@
-package sql.practice.table;
+package sql.practice.test2;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.Embeddable;
 
 
 @Embeddable
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
+@Setter
 public class Property {
 
     private String name;
-
     public Property(String name) {
         this.name = name;
     }

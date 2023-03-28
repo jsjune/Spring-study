@@ -1,4 +1,4 @@
-package sql.practice.table;
+package sql.practice.test2;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

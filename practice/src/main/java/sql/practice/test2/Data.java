@@ -1,12 +1,13 @@
-package sql.practice.table;
+package sql.practice.test2;
 
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.Embeddable;
 
 @Embeddable
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
+@Setter
 public class Data {
     private String name;
     private String phoneNumber;
