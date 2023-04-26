@@ -1,7 +1,6 @@
 package sql.practice.test3;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import org.hibernate.Hibernate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
-import static sql.practice.test3.QProject.project;
-import static sql.practice.test3.QStudy.study;
-import static sql.practice.test3.QUser.user;
 
 @SpringBootTest
 public class TableTest {
@@ -53,9 +47,6 @@ public class TableTest {
     @Transactional
     @Rollback(value = false)
     void test() {
-//        List<User> users = jpaQueryFactory.selectFrom(user).fetch();
-//        users.stream().map(User::getStudies).forEach(Hibernate::initialize);
-//        users.stream().map(User::getProjects).forEach(Hibernate::initialize);
         List<User> users = userRepository.findAll();
 
         System.out.println("================================");
@@ -70,5 +61,7 @@ public class TableTest {
             }
         }
         System.out.println("================================");
+
+
     }
 }

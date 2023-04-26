@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-/* 계단 오르기 */
+/* 계단 오르기
+* https://www.acmicpc.net/problem/2579
+* */
 public class Bj2579 {
     static int[] dy;
 
