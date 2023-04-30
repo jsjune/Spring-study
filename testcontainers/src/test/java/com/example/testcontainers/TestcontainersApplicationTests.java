@@ -13,6 +13,8 @@ import java.io.File;
 @Testcontainers
 @Slf4j
 class TestcontainersApplicationTests {
+
+
     @Container
     static MySQLContainer mySQLContainer = new MySQLContainer("mysql:5.7");
 
