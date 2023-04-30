@@ -1,15 +1,11 @@
 package com.example.testcontainers;
 
-import org.junit.ClassRule;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.testcontainers.containers.DockerComposeContainer;
 import org.testcontainers.containers.MySQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
-
-import java.io.File;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -34,8 +30,7 @@ public class HumanServiceTest {
     void test() {
         Human findHuman = humanService.save();
 
-        Human human = humanRepository.save(new Human("aaa", 20));
-
-        assertThat(human.getUsername()).isEqualTo(findHuman.getUsername());
+        assertThat(findHuman.getUsername()).isEqualTo("aaa");
+        assertThat(findHuman.getAge()).isEqualTo(20);
     }
 }
