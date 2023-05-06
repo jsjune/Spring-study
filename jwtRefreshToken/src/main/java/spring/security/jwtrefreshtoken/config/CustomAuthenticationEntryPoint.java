@@ -21,6 +21,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         String loginException = authException.getClass().getSimpleName();
+        System.out.println("loginException = " + loginException);
         String jwtException = (String) request.getAttribute("exception");
         ErrorCode errorCode;
 
@@ -42,11 +43,11 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
                 setResponse(response, errorCode);
             }
         } else {
-            if (loginException.equals(ErrorCode.BadCredentialsException.name())) {
-                errorCode = ErrorCode.BadCredentialsException;
-                setResponse(response, errorCode);
-            } else if (loginException.equals(ErrorCode.UsernameNotFoundException.name())) {
+            if (loginException.equals(ErrorCode.UsernameNotFoundException.name())) {
                 errorCode = ErrorCode.UsernameNotFoundException;
+                setResponse(response, errorCode);
+            } else if (loginException.equals(ErrorCode.BadCredentialsException.name())) {
+                errorCode = ErrorCode.BadCredentialsException;
                 setResponse(response, errorCode);
             } else if (loginException.equals(ErrorCode.AccountExpiredException.name())) {
                 errorCode = ErrorCode.AccountExpiredException;

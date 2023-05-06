@@ -6,8 +6,8 @@ import org.springframework.http.HttpStatus;
 @Getter
 public enum ErrorCode {
     EXIST_EMAIL(HttpStatus.BAD_REQUEST, "USER_01", "존재하는 이메일 입니다."),
-    BadCredentialsException(HttpStatus.UNAUTHORIZED, "USER_02", "계정또는 비밀번호가 불일치 합니다."),
-    UsernameNotFoundException(HttpStatus.UNAUTHORIZED, "USER_03", "계정이 존재하지 않습니다."),
+    UsernameNotFoundException(HttpStatus.UNAUTHORIZED, "USER_02", "계정이 존재하지 않습니다."),
+    BadCredentialsException(HttpStatus.UNAUTHORIZED, "USER_03", "비밀번호가 불일치 합니다."),
     AccountExpiredException(HttpStatus.UNAUTHORIZED, "USER_04", "계정이 만료되었습니다."),
     CredentialsExpiredException(HttpStatus.UNAUTHORIZED, "USER_05", "비밀번호가 만료되었습니다."),
     DisabledException(HttpStatus.UNAUTHORIZED, "USER_06", "계정이 비활성화되었습니다."),

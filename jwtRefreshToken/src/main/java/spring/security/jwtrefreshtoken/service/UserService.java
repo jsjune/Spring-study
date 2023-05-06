@@ -52,7 +52,6 @@ public class UserService {
                 request.getEmail(),
                 request.getPassword());
         Authentication authentication = authenticationManager.authenticate(authRequest);
-
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String accessToken = jwtUtils.generateAccessTokenFromEmail(request.getEmail());
         RefreshToken refreshToken = RefreshToken.builder()
