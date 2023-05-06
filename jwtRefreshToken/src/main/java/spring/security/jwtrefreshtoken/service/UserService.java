@@ -8,9 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import spring.security.jwtrefreshtoken.common.exception.ErrorCode;
 import spring.security.jwtrefreshtoken.common.exception.GlobalException;
-import spring.security.jwtrefreshtoken.config.jwt.JwtProperties;
 import spring.security.jwtrefreshtoken.config.jwt.JwtUtils;
 import spring.security.jwtrefreshtoken.domain.RefreshToken;
 import spring.security.jwtrefreshtoken.domain.User;
@@ -24,6 +22,9 @@ import spring.security.jwtrefreshtoken.repository.redis.RefreshTokenRepository;
 import java.time.Instant;
 import java.util.UUID;
 
+import static spring.security.jwtrefreshtoken.common.exception.ErrorCode.*;
+import static spring.security.jwtrefreshtoken.config.jwt.JwtProperties.REFRESH_TOKEN_EXPIRE_TIME;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -35,7 +36,7 @@ public class UserService {
 
     public Object registerUser(SignupRequest signupRequest) {
         if (userRepository.existsByEmail(signupRequest.getEmail())) {
-            throw new GlobalException(ErrorCode.EXIST_EMAIL);
+            throw new GlobalException(EXIST_EMAIL);
         }
         User user = User.register()
                 .email(signupRequest.getEmail())
@@ -56,7 +57,7 @@ public class UserService {
         String accessToken = jwtUtils.generateAccessTokenFromEmail(request.getEmail());
         RefreshToken refreshToken = RefreshToken.builder()
                 .email(request.getEmail())
-                .expiryDate(Instant.now().plusMillis(JwtProperties.REFRESH_TOKEN_EXPIRE_TIME))
+                .expiryDate(Instant.now().plusMillis(REFRESH_TOKEN_EXPIRE_TIME))
                 .refreshToken(UUID.randomUUID().toString())
                 .build();
         refreshTokenRepository.save(refreshToken);
@@ -70,10 +71,10 @@ public class UserService {
     public Object reissue(TokenRefreshRequest request) {
         String refreshToken = request.getRefreshToken();
         RefreshToken findRefreshToken = refreshTokenRepository.findByRefreshToken(refreshToken)
-                .orElseThrow(() -> new GlobalException(ErrorCode.NOT_FOUND_REFRESH_TOKEN));
+                .orElseThrow(() -> new GlobalException(NOT_FOUND_REFRESH_TOKEN));
         if (findRefreshToken.getExpiryDate().compareTo(Instant.now()) < 0) {
             refreshTokenRepository.delete(findRefreshToken);
-            throw new GlobalException(ErrorCode.EXPIRED_REFRESH_TOKEN);
+            throw new GlobalException(EXPIRED_REFRESH_TOKEN);
         }
         String accessToken = jwtUtils.generateAccessTokenFromEmail(findRefreshToken.getEmail());
         return ResponseEntity.ok(new UserResponseDto.TokenInfo(

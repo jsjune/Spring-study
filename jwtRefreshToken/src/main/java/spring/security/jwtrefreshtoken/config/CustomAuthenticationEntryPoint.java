@@ -14,6 +14,10 @@ import spring.security.jwtrefreshtoken.common.exception.ErrorResponse;
 
 import java.io.IOException;
 
+import static spring.security.jwtrefreshtoken.common.exception.ErrorCode.*;
+import static spring.security.jwtrefreshtoken.config.jwt.JwtProperties.EXCEPTION;
+
+
 @Component
 @Slf4j
 public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint {
@@ -21,48 +25,47 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         String loginException = authException.getClass().getSimpleName();
-        System.out.println("loginException = " + loginException);
-        String jwtException = (String) request.getAttribute("exception");
+        String jwtException = (String) request.getAttribute(EXCEPTION);
         ErrorCode errorCode;
 
         if (jwtException != null) {
-            if (jwtException.equals(ErrorCode.INVALID_JWT_SIGNATURE.getCode())) {
-                errorCode = ErrorCode.INVALID_JWT_SIGNATURE;
+            if (jwtException.equals(INVALID_JWT_SIGNATURE.getCode())) {
+                errorCode = INVALID_JWT_SIGNATURE;
                 setResponse(response, errorCode);
-            } else if (jwtException.equals(ErrorCode.INVALID_JWT_TOKEN.getCode())) {
-                errorCode = ErrorCode.INVALID_JWT_TOKEN;
+            } else if (jwtException.equals(INVALID_JWT_TOKEN.getCode())) {
+                errorCode = INVALID_JWT_TOKEN;
                 setResponse(response, errorCode);
-            } else if (jwtException.equals(ErrorCode.EXPIRED_ACCESS_TOKEN.getCode())) {
-                errorCode = ErrorCode.EXPIRED_ACCESS_TOKEN;
+            } else if (jwtException.equals(EXPIRED_ACCESS_TOKEN.getCode())) {
+                errorCode = EXPIRED_ACCESS_TOKEN;
                 setResponse(response, errorCode);
-            } else if (jwtException.equals(ErrorCode.UNSUPPORTED_JWT_TOKEN.getCode())) {
-                errorCode = ErrorCode.UNSUPPORTED_JWT_TOKEN;
+            } else if (jwtException.equals(UNSUPPORTED_JWT_TOKEN.getCode())) {
+                errorCode = UNSUPPORTED_JWT_TOKEN;
                 setResponse(response, errorCode);
-            } else if (jwtException.equals(ErrorCode.CLAIMS_EMPTY.getCode())) {
-                errorCode = ErrorCode.CLAIMS_EMPTY;
+            } else if (jwtException.equals(CLAIMS_EMPTY.getCode())) {
+                errorCode = CLAIMS_EMPTY;
                 setResponse(response, errorCode);
             }
         } else {
-            if (loginException.equals(ErrorCode.UsernameNotFoundException.name())) {
-                errorCode = ErrorCode.UsernameNotFoundException;
+            if (loginException.equals(UsernameNotFoundException.name())) {
+                errorCode = UsernameNotFoundException;
                 setResponse(response, errorCode);
-            } else if (loginException.equals(ErrorCode.BadCredentialsException.name())) {
-                errorCode = ErrorCode.BadCredentialsException;
+            } else if (loginException.equals(BadCredentialsException.name())) {
+                errorCode = BadCredentialsException;
                 setResponse(response, errorCode);
-            } else if (loginException.equals(ErrorCode.AccountExpiredException.name())) {
-                errorCode = ErrorCode.AccountExpiredException;
+            } else if (loginException.equals(AccountExpiredException.name())) {
+                errorCode = AccountExpiredException;
                 setResponse(response, errorCode);
-            } else if (loginException.equals(ErrorCode.CredentialsExpiredException.name())) {
-                errorCode = ErrorCode.CredentialsExpiredException;
+            } else if (loginException.equals(CredentialsExpiredException.name())) {
+                errorCode = CredentialsExpiredException;
                 setResponse(response, errorCode);
-            } else if (loginException.equals(ErrorCode.DisabledException.name())) {
-                errorCode = ErrorCode.DisabledException;
+            } else if (loginException.equals(DisabledException.name())) {
+                errorCode = DisabledException;
                 setResponse(response, errorCode);
-            } else if (loginException.equals(ErrorCode.LockedException.name())) {
-                errorCode = ErrorCode.LockedException;
+            } else if (loginException.equals(LockedException.name())) {
+                errorCode = LockedException;
                 setResponse(response, errorCode);
             } else {
-                errorCode = ErrorCode.NoneException;
+                errorCode = NoneException;
                 setResponse(response, errorCode);
             }
         }
