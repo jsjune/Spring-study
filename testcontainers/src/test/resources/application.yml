@@ -1,10 +1,12 @@
 spring:
   datasource:
-    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+#    url: jdbc:tc:mysql:5.7://test?TC_INITSCRIPT=db/schema.sql
     url: jdbc:tc:mysql:5.7:///test
+#    url: jdbc:tc:mysql:5.7:///testDB?TC_INITSCRIPT=db/schema.sql
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
   jpa:
     hibernate:
-      ddlAuto: create-drop
+      ddlAuto: create
     properties:
       hibernate:
         show_sql: true

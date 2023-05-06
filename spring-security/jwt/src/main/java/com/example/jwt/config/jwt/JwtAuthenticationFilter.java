@@ -81,7 +81,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         log.info("successfulAuthentication 실행됨 : 인증 완료");
         UserDetailsImpl userDetailsImpl = (UserDetailsImpl)authResult.getPrincipal();
         String jwtToken = JWT.create()
-            .withSubject("토큰")
+            .withSubject("token")
             .withExpiresAt(new Date(System.currentTimeMillis()+JwtProperties.EXPIRATION_TIME))
             .withClaim("id", userDetailsImpl.getUser().getId())
             .withClaim("email", userDetailsImpl.getUser().getEmail())

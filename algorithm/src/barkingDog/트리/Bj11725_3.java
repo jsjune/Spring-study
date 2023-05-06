@@ -37,9 +37,11 @@ public class Bj11725_3 {
         while (!q.isEmpty()) {
             Integer cur = q.poll();
             for (Node temp = list[cur]; temp != null; temp = temp.next) {
-                visited[temp.node] = true;
-                parents[temp.node] = cur;
-                q.add(temp.node);
+                if (visited[temp.node] == false) {
+                    visited[temp.node] = true;
+                    parents[temp.node] = cur;
+                    q.add(temp.node);
+                }
             }
         }
 
