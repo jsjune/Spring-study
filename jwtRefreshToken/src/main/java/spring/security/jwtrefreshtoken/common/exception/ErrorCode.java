@@ -18,9 +18,8 @@ public enum ErrorCode {
     EXPIRED_ACCESS_TOKEN(HttpStatus.UNAUTHORIZED, "TOKEN_03", "토큰시간이 만료되었습니다."),
     UNSUPPORTED_JWT_TOKEN(HttpStatus.UNAUTHORIZED, "TOKEN_04", "지원하지 않는 토큰입니다."),
     CLAIMS_EMPTY(HttpStatus.UNAUTHORIZED, "TOKEN_05", "JWT claims 가 비어있습니다."),
-    RETRY_LOGIN(HttpStatus.UNAUTHORIZED, "TOKEN_06", "다시 로그인 해주세요."),
-    EXPIRED_REFRESH_TOKEN(HttpStatus.BAD_REQUEST, "TOKEN_07", "리프레시 토큰시간이 만료되었습니다."),
-    NOT_FOUND_REFRESH_TOKEN(HttpStatus.BAD_REQUEST, "TOKEN_08", "데이터베이스에 리프레시 토큰을 찾을 수 없습니다.");
+    EXPIRED_REFRESH_TOKEN(HttpStatus.BAD_REQUEST, "TOKEN_06", "리프레시 토큰시간이 만료되었습니다. 다시 로그인 해주세요."),
+    NOT_FOUND_REFRESH_TOKEN(HttpStatus.BAD_REQUEST, "TOKEN_07", "데이터베이스에 리프레시 토큰을 찾을 수 없습니다.");
 
     ErrorCode(HttpStatus httpStatus, String code, String message) {
         this.httpStatus = httpStatus;
