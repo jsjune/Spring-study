@@ -1,55 +1,57 @@
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.StringTokenizer;
 
 public class Test {
-    private static Node root;
-    private static StringBuilder sb = new StringBuilder();
+    private static ArrayList<Integer>[] arr;
+    private static boolean[] ch;
+    private static int[] dis;
+    private static int N,M;
 
     public static void main(String[] args) throws IOException {
-        root = new Node(1);
-        root.lt = new Node(2);
-        root.rt = new Node(3);
-        root.lt.lt = new Node(4);
-        root.lt.rt = new Node(5);
-        root.rt.lt = new Node(6);
-        root.rt.rt = new Node(7);
-        BFS(root);
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
+        ch = new boolean[N + 1];
+        dis = new int[N + 1];
+        arr = new ArrayList[N + 1];
+        for (int i = 0; i <= N; i++) {
+            arr[i] = new ArrayList<>();
+        }
+
+        for (int i = 0; i < M; i++) {
+            st = new StringTokenizer(br.readLine());
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
+            arr[a].add(b);
+        }
+        BFS(1);
+        StringBuilder sb = new StringBuilder();
+        for (int i = 2; i <= N; i++) {
+            sb.append(i + " : " + dis[i]).append("\n");
+        }
         System.out.println(sb);
     }
 
-    private static void BFS(Node root) {
-        Queue<Node> q = new LinkedList<>();
-        q.add(root);
-        int L  = 0;
+    private static void BFS(int v) {
+        ch[v] = true;
+        dis[v] = 0;
+        Queue<Integer> q = new LinkedList<>();
+        q.offer(v);
         while (!q.isEmpty()) {
-            int len = q.size();
-            System.out.print(L + " : ");
-            for (int i = 0; i < len; i++) {
-                Node cur = q.poll();
-                System.out.print(cur.data+ " ");
-                sb.append(cur.data + " ");
-                if (cur.lt != null) {
-                    q.add(cur.lt);
-                }
-                if (cur.rt != null) {
-                    q.add(cur.rt);
+            Integer cv = q.poll();
+            for (int nv : arr[cv]) {
+                if (!ch[nv]) {
+                    ch[nv] = true;
+                    q.add(nv);
+                    dis[nv] = dis[cv] + 1;
                 }
             }
-            L++;
-            System.out.println();
         }
     }
-
-    private static class Node {
-        int data;
-        Node lt;
-        Node rt;
-
-        public Node(int data) {
-            this.data = data;
-            this.lt = this.rt = null;
-        }
-    }
-
 }
