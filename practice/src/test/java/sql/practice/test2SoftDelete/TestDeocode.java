@@ -1,4 +1,4 @@
-package sql.practice.test2;
+package sql.practice.test2SoftDelete;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static sql.practice.test2.QGroups.groups;
+import static sql.practice.test2SoftDelete.QGroups.groups;
 
 @SpringBootTest
 public class TestDeocode {

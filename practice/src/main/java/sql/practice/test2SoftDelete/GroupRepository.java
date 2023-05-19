@@ -1,4 +1,4 @@
-package sql.practice.test2;
+package sql.practice.test2SoftDelete;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
