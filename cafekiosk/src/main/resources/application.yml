@@ -12,6 +12,9 @@ spring:
     hibernate:
       ddl-auto: none
 
+  sql:
+    init:
+      encoding: UTF-8
 ---
 spring:
   config:
