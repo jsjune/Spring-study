@@ -7,23 +7,29 @@ import lombok.Setter;
 import org.springframework.data.redis.core.RedisHash;
 import org.springframework.data.redis.core.index.Indexed;
 
-import java.time.Instant;
+import static spring.security.jwtrefreshtoken.config.jwt.JwtProperties.REFRESH_TOKEN_EXPIRE_TIME_FOR_REDIS;
 
-@RedisHash(value = "refresh")
+@RedisHash(value = "refresh", timeToLive = REFRESH_TOKEN_EXPIRE_TIME_FOR_REDIS)
 @Getter
 @Setter
 public class RefreshToken {
     @Id
     private Long id;
     private String email;
-    private Instant expiryDate;
+//    private Instant expiryDate;
     @Indexed
     private String refreshToken;
 
+//    @Builder
+//    public RefreshToken(String email, Instant expiryDate, String refreshToken) {
+//        this.email = email;
+//        this.expiryDate = expiryDate;
+//        this.refreshToken = refreshToken;
+//    }
+
     @Builder
-    public RefreshToken(String email, Instant expiryDate, String refreshToken) {
+    public RefreshToken(String email, String refreshToken) {
         this.email = email;
-        this.expiryDate = expiryDate;
         this.refreshToken = refreshToken;
     }
 }

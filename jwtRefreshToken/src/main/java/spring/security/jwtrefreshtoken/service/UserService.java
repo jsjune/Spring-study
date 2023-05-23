@@ -57,7 +57,6 @@ public class UserService {
         String accessToken = jwtUtils.generateAccessTokenFromEmail(request.getEmail());
         RefreshToken refreshToken = RefreshToken.builder()
                 .email(request.getEmail())
-                .expiryDate(Instant.now().plusMillis(REFRESH_TOKEN_EXPIRE_TIME))
                 .refreshToken(UUID.randomUUID().toString())
                 .build();
         refreshTokenRepository.save(refreshToken);
@@ -71,11 +70,11 @@ public class UserService {
     public Object reissue(TokenRefreshRequest request) {
         String refreshToken = request.getRefreshToken();
         RefreshToken findRefreshToken = refreshTokenRepository.findByRefreshToken(refreshToken)
-                .orElseThrow(() -> new GlobalException(NOT_FOUND_REFRESH_TOKEN));
-        if (findRefreshToken.getExpiryDate().compareTo(Instant.now()) < 0) {
-            refreshTokenRepository.delete(findRefreshToken);
-            throw new GlobalException(EXPIRED_REFRESH_TOKEN);
-        }
+                .orElseThrow(() -> new GlobalException(EXPIRED_REFRESH_TOKEN));
+//        if (findRefreshToken.getExpiryDate().compareTo(Instant.now()) < 0) {
+//            refreshTokenRepository.delete(findRefreshToken);
+//            throw new GlobalException(EXPIRED_REFRESH_TOKEN);
+//        }
         String accessToken = jwtUtils.generateAccessTokenFromEmail(findRefreshToken.getEmail());
         return ResponseEntity.ok(new UserResponseDto.TokenInfo(
                 findRefreshToken.getEmail(),
