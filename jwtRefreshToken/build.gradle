@@ -12,6 +12,9 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
+    configureEach {
+        exclude group: "org.slf4j", module: "slf4j-simple"
+    }
 }
 
 repositories {
@@ -34,6 +37,10 @@ dependencies {
 
     implementation 'io.jsonwebtoken:jjwt:0.9.1'
     implementation 'javax.xml.bind:jaxb-api:2.3.1'
+
+    // https://mvnrepository.com/artifact/it.ozimov/embedded-redis
+    testImplementation 'it.ozimov:embedded-redis:0.7.3'
+
 }
 
 tasks.named('test') {
