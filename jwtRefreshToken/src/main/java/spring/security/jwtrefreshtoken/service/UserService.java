@@ -19,11 +19,9 @@ import spring.security.jwtrefreshtoken.dto.response.UserResponseDto;
 import spring.security.jwtrefreshtoken.repository.UserRepository;
 import spring.security.jwtrefreshtoken.repository.redis.RefreshTokenRepository;
 
-import java.time.Instant;
 import java.util.UUID;
 
 import static spring.security.jwtrefreshtoken.common.exception.ErrorCode.*;
-import static spring.security.jwtrefreshtoken.config.jwt.JwtProperties.REFRESH_TOKEN_EXPIRE_TIME;
 
 @Service
 @RequiredArgsConstructor
@@ -71,10 +69,6 @@ public class UserService {
         String refreshToken = request.getRefreshToken();
         RefreshToken findRefreshToken = refreshTokenRepository.findByRefreshToken(refreshToken)
                 .orElseThrow(() -> new GlobalException(EXPIRED_REFRESH_TOKEN));
-//        if (findRefreshToken.getExpiryDate().compareTo(Instant.now()) < 0) {
-//            refreshTokenRepository.delete(findRefreshToken);
-//            throw new GlobalException(EXPIRED_REFRESH_TOKEN);
-//        }
         String accessToken = jwtUtils.generateAccessTokenFromEmail(findRefreshToken.getEmail());
         return ResponseEntity.ok(new UserResponseDto.TokenInfo(
                 findRefreshToken.getEmail(),

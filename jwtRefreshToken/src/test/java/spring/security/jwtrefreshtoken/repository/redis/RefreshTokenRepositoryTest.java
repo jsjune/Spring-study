@@ -50,7 +50,7 @@ class RefreshTokenRepositoryTest extends IntegrationTestSupport {
         assertThat(findRefreshToken.get().getId()).isEqualTo(saveRefreshToken.getId());
     }
 
-    @DisplayName("refreshToken이 TimeToLive 속성으로 1초 후 삭제된다.")
+    @DisplayName("refreshToken이 TimeToLive 속성으로 지정한 시간이 지난 후 삭제된다.")
     @Test
     void TimeToLiveAfterRemove() throws InterruptedException {
         // given
@@ -60,7 +60,7 @@ class RefreshTokenRepositoryTest extends IntegrationTestSupport {
         refreshTokenRepository.save(createRefreshToken);
 
         // when
-        Thread.sleep(1000);
+        Thread.sleep(1100);
         Optional<RefreshToken> findRefreshToken = refreshTokenRepository.findByRefreshToken(refreshToken);
 
         // then

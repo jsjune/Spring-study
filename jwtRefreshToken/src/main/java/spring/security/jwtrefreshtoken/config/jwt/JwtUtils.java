@@ -12,8 +12,8 @@ import java.util.Date;
 import static spring.security.jwtrefreshtoken.common.exception.ErrorCode.*;
 import static spring.security.jwtrefreshtoken.config.jwt.JwtProperties.*;
 
-@Component
 @Slf4j
+@Component
 public class JwtUtils {
     @Value("${jwt.app.jwtSecret}")
     private String jwtSecret;
@@ -29,6 +29,14 @@ public class JwtUtils {
 
     public String getEmailFromJwtToken(String token) {
         return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
+    }
+
+    public String parseJwtToken(HttpServletRequest request) {
+        String header = request.getHeader(HEADER_STRING);
+        if (StringUtils.hasText(header) && header.startsWith(TOKEN_PREFIX)) {
+            return header.replace(TOKEN_PREFIX, "");
+        }
+        return null;
     }
 
     public boolean validateJwtToken(String token, HttpServletRequest request) {
@@ -54,11 +62,4 @@ public class JwtUtils {
         return false;
     }
 
-    public String parseJwtToken(HttpServletRequest request) {
-        String header = request.getHeader(HEADER_STRING);
-        if (StringUtils.hasText(header) && header.startsWith(TOKEN_PREFIX)) {
-            return header.replace(TOKEN_PREFIX, "");
-        }
-        return null;
-    }
 }

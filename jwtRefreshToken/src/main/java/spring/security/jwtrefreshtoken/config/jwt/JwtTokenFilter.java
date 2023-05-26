@@ -18,9 +18,9 @@ import java.io.IOException;
 @Slf4j
 public class JwtTokenFilter extends OncePerRequestFilter {
     @Autowired
-    private JwtUtils jwtUtils;
-    @Autowired
     private UserDetailsServiceImpl userDetailsService;
+    @Autowired
+    private JwtUtils jwtUtils;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
