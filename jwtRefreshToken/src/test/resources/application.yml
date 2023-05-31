@@ -1,13 +1,9 @@
 spring:
   profiles:
-    active: local
+    active: test
   redis:
     host: localhost
     port: 6379
-  datasource:
-    url: jdbc:mysql://localhost:3306/jwt?rewriteBatchedStatements=true&characterEncoding=UTF-8&serverTimezone=Asia/Seoul
-    username: root
-    password: 1234
   jpa:
     hibernate:
       ddl-auto: create
@@ -16,11 +12,16 @@ spring:
         show_sql: true
         format_sql: true
 
+  datasource:
+    url: jdbc:h2:mem:test;MODE=MySQL
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+    h2:
+      console:
+        enabled: true
+
 jwt:
   app:
     jwtSecret: jwtSecretKey
-
-
-
-
 

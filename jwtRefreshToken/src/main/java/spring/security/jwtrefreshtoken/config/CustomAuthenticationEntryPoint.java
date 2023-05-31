@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
+import spring.security.jwtrefreshtoken.common.dto.ResponseDto;
 import spring.security.jwtrefreshtoken.common.exception.ErrorCode;
 import spring.security.jwtrefreshtoken.common.exception.ErrorResponse;
 
@@ -76,7 +77,8 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.setCharacterEncoding("UTF-8");
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        ErrorResponse errorResponse = new ErrorResponse(errorCode.getCode(), errorCode.getMessage());
-        response.getWriter().write(objectMapper.writeValueAsString(errorResponse));
+//        ErrorResponse errorResponse = new ErrorResponse(errorCode.getCode(), errorCode.getMessage());
+        ResponseDto<Object> fail = ResponseDto.fail(errorCode.getCode(), errorCode.getMessage());
+        response.getWriter().write(objectMapper.writeValueAsString(fail));
     }
 }

@@ -86,10 +86,11 @@ public class ExcelController {
         List<ExcelEntity> excelData = dataList.stream().map(ExcelEntity::new).collect(
             Collectors.toList());
 
-        String sql = String.format("""
-                INSERT INTO `%s` (age, name, id)
-                VALUES (:age, :name, :id)
-                """, "excel_entity");
+//        String sql = String.format("""
+//                INSERT INTO `%s` (age, name, id)
+//                VALUES (:age, :name, :id)
+//                """, "excel_entity");
+        String sql = "";
         SqlParameterSource[] params = excelData.stream().map(BeanPropertySqlParameterSource::new)
             .toArray(SqlParameterSource[]::new);
         namedParameterJdbcTemplate.batchUpdate(sql, params);

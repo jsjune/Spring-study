@@ -32,7 +32,7 @@ public class UserService {
     private final AuthenticationManager authenticationManager;
     private final JwtUtils jwtUtils;
 
-    public Object registerUser(SignupRequest signupRequest) {
+    public String registerUser(SignupRequest signupRequest) {
         if (userRepository.existsByEmail(signupRequest.getEmail())) {
             throw new GlobalException(EXIST_EMAIL);
         }
@@ -46,7 +46,7 @@ public class UserService {
         return "success";
     }
 
-    public Object login(LoginRequest request) {
+    public UserResponseDto.TokenInfo login(LoginRequest request) {
         UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(
                 request.getEmail(),
                 request.getPassword());
@@ -59,20 +59,20 @@ public class UserService {
                 .build();
         refreshTokenRepository.save(refreshToken);
 
-        return ResponseEntity.ok(new UserResponseDto.TokenInfo(
+        return new UserResponseDto.TokenInfo(
                 refreshToken.getEmail(),
                 accessToken,
-                refreshToken.getRefreshToken()));
+                refreshToken.getRefreshToken());
     }
 
-    public Object reissue(TokenRefreshRequest request) {
+    public UserResponseDto.TokenInfo reissue(TokenRefreshRequest request) {
         String refreshToken = request.getRefreshToken();
         RefreshToken findRefreshToken = refreshTokenRepository.findByRefreshToken(refreshToken)
                 .orElseThrow(() -> new GlobalException(EXPIRED_REFRESH_TOKEN));
         String accessToken = jwtUtils.generateAccessTokenFromEmail(findRefreshToken.getEmail());
-        return ResponseEntity.ok(new UserResponseDto.TokenInfo(
+        return new UserResponseDto.TokenInfo(
                 findRefreshToken.getEmail(),
                 accessToken,
-                refreshToken));
+                refreshToken);
     }
 }

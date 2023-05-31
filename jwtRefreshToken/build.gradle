@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.0.6'
     id 'io.spring.dependency-management' version '1.1.0'
+    id 'jacoco'
 }
 
 group = 'spring.security'
@@ -19,6 +20,10 @@ configurations {
 
 repositories {
     mavenCentral()
+}
+
+jacoco {
+    toolVersion = '0.8.8'
 }
 
 dependencies {
@@ -42,10 +47,16 @@ dependencies {
     implementation 'javax.xml.bind:jaxb-api:2.3.1'
 
     // https://mvnrepository.com/artifact/it.ozimov/embedded-redis
-    testImplementation 'it.ozimov:embedded-redis:0.7.3'
+    implementation 'it.ozimov:embedded-redis:0.7.3'
 
 }
 
-tasks.named('test') {
+
+test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport // report is always generated after tests run
+}
+
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
 }

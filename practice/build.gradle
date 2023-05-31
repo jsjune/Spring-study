@@ -14,7 +14,7 @@ plugins {
 
 group = 'sql'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = "15"
+sourceCompatibility = "11"
 
 configurations {
     compileOnly {
@@ -22,9 +22,6 @@ configurations {
     }
 }
 
-jib {
-    container.mainClass = "sql.practice.PracticeApplication"
-}
 
 repositories {
     mavenCentral()
@@ -74,7 +71,22 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
-targetCompatibility = JavaVersion.VERSION_15
+
+//jib 설정
+jib {
+    from {
+        image = "openjdk:11.0.11-jre-slim"
+    }
+    to {
+        image = "jsj6121/abcd"
+        tags = ["latest"]
+    }
+    container {
+        jvmFlags = ["-Xms128m", "-Xmx128m"]
+    }
+}
+
+targetCompatibility = JavaVersion.VERSION_11
 
 def querydslDir = "$buildDir/generated/querydsl"
 
