@@ -1,5 +1,6 @@
 package spring.security.jwtrefreshtoken.repository;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +10,14 @@ import spring.security.jwtrefreshtoken.domain.User;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Sql("classpath:db/teardown.sql")
 class UserRepositoryTest extends IntegrationTestSupport {
     @Autowired
     UserRepository userRepository;
+
+    @AfterEach
+    void tearDown(){
+        userRepository.deleteAllInBatch();
+    }
 
     @DisplayName("이메일이 존재하는지 확인한다.")
     @Test

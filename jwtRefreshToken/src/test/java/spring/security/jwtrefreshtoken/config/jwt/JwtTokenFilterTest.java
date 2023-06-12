@@ -5,9 +5,9 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -17,7 +17,7 @@ import spring.security.jwtrefreshtoken.config.service.UserDetailsServiceImpl;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 class JwtTokenFilterTest {
@@ -44,8 +44,9 @@ class JwtTokenFilterTest {
         jwtTokenFilter = new JwtTokenFilter(userDetailsService, jwtUtils);
     }
 
+    @DisplayName("유효하지 않은 토큰일때 인증 실패헀을 경우")
     @Test
-    public void testDoFilterInternal_InvalidToken_ShouldNotSetAuthentication() throws ServletException, IOException, IOException {
+    public void invalidToken_ShouldNotSetAuthentication() throws ServletException, IOException, IOException {
         // Arrange
         String invalidToken = "invalid-token";
         when(jwtUtils.parseJwtToken(request)).thenReturn(invalidToken);
@@ -59,8 +60,9 @@ class JwtTokenFilterTest {
         verify(filterChain).doFilter(request, response);
     }
 
+    @DisplayName("유효한 토큰일때 인증 성공했을 경우")
     @Test
-    public void testDoFilterInternal_ValidToken_ShouldSetAuthentication() throws ServletException, IOException {
+    public void validToken_ShouldSetAuthentication() throws ServletException, IOException {
         // Arrange
         String validToken = "valid-token";
         String email = "user@example.com";
@@ -81,8 +83,8 @@ class JwtTokenFilterTest {
 
         // Verify authentication is set
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        assert authentication instanceof UsernamePasswordAuthenticationToken;
-        assert authentication.getPrincipal() == userDetails;
-        assert authentication.getCredentials() == null;
+        assertThat(authentication).isInstanceOf(UsernamePasswordAuthenticationToken.class);
+        assertThat(authentication.getPrincipal()).isSameAs(userDetails);
+        assertThat(authentication.getCredentials()).isNull();
     }
 }

@@ -6,6 +6,5 @@ import org.springframework.test.context.jdbc.Sql;
 
 @SpringBootTest
 @ActiveProfiles("test")
-@Sql("classpath:db/teardown.sql")
 public abstract class IntegrationTestSupport {
 }
