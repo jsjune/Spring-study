@@ -53,19 +53,21 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
             } else if (loginException.equals(BadCredentialsException.name())) {
                 errorCode = BadCredentialsException;
                 setResponse(response, errorCode);
-            } else if (loginException.equals(AccountExpiredException.name())) {
-                errorCode = AccountExpiredException;
-                setResponse(response, errorCode);
-            } else if (loginException.equals(CredentialsExpiredException.name())) {
-                errorCode = CredentialsExpiredException;
-                setResponse(response, errorCode);
-            } else if (loginException.equals(DisabledException.name())) {
-                errorCode = DisabledException;
-                setResponse(response, errorCode);
-            } else if (loginException.equals(LockedException.name())) {
-                errorCode = LockedException;
-                setResponse(response, errorCode);
-            } else {
+            }
+//            else if (loginException.equals(AccountExpiredException.name())) {
+//                errorCode = AccountExpiredException;
+//                setResponse(response, errorCode);
+//            } else if (loginException.equals(CredentialsExpiredException.name())) {
+//                errorCode = CredentialsExpiredException;
+//                setResponse(response, errorCode);
+//            } else if (loginException.equals(DisabledException.name())) {
+//                errorCode = DisabledException;
+//                setResponse(response, errorCode);
+//            } else if (loginException.equals(LockedException.name())) {
+//                errorCode = LockedException;
+//                setResponse(response, errorCode);
+//            }
+            else {
                 errorCode = NoneException;
                 setResponse(response, errorCode);
             }
@@ -78,7 +80,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
         response.setCharacterEncoding("UTF-8");
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 //        ErrorResponse errorResponse = new ErrorResponse(errorCode.getCode(), errorCode.getMessage());
-        ResponseDto<Object> fail = ResponseDto.fail(errorCode.getCode(), errorCode.getMessage());
+        ResponseDto<ErrorResponse> fail = ResponseDto.fail(errorCode.getCode(), errorCode.getMessage());
         response.getWriter().write(objectMapper.writeValueAsString(fail));
     }
 }

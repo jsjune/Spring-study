@@ -1,5 +1,6 @@
 package spring.security.jwtrefreshtoken.config;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,19 +14,21 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import spring.security.jwtrefreshtoken.config.jwt.JwtTokenFilter;
+import spring.security.jwtrefreshtoken.config.jwt.JwtUtils;
 import spring.security.jwtrefreshtoken.config.service.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
-    @Autowired
-    private UserDetailsServiceImpl userDetailsService;
-    @Autowired
-    private CustomAuthenticationEntryPoint unauthorizedHandler;
+    private final UserDetailsServiceImpl userDetailsService;
+    private final CustomAuthenticationEntryPoint unauthorizedHandler;
+    private final JwtUtils jwtUtils;
+
 
     @Bean
     public JwtTokenFilter authenticationJwtTokenFilter() {
-        return new JwtTokenFilter();
+        return new JwtTokenFilter(userDetailsService,jwtUtils);
     }
 
     @Bean

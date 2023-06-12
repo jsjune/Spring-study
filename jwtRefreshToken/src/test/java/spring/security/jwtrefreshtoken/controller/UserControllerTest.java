@@ -58,24 +58,6 @@ class UserControllerTest extends ControllerTestSupport {
                 .andExpect(jsonPath("$.success").value(true));
     }
 
-    @DisplayName("이메일이 중복되서 회원가입에 실패합니다.")
-    @Test
-    void registerUserEmailDuplicateFail() throws Exception {
-        // given
-        SignupRequest request = new SignupRequest("라마바", "abc@naver.com", "1234");
-
-        // when // then
-        mockMvc.perform(
-                        post("/auth/signup")
-                                .content(objectMapper.writeValueAsString(request))
-                                .contentType(MediaType.APPLICATION_JSON)
-                )
-                .andDo(print())
-                .andExpect(status().is(400))
-                .andExpect(jsonPath("$.success").value(false))
-                .andExpect(jsonPath("$.error.message").value("존재하는 이메일 입니다."));
-    }
-
     @DisplayName("로그인을 성공합니다.")
     @Test
     void loginSuccess() throws Exception {

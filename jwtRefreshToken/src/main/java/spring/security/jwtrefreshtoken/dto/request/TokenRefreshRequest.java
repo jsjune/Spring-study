@@ -7,4 +7,8 @@ import lombok.Getter;
 public class TokenRefreshRequest {
     @NotBlank
     private String refreshToken;
+
+    public TokenRefreshRequest(String refreshToken) {
+        this.refreshToken = refreshToken;
+    }
 }

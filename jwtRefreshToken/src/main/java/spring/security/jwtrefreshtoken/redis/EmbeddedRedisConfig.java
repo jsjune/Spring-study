@@ -93,6 +93,7 @@ public class EmbeddedRedisConfig {
             }
 
         } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return !StringUtils.isEmpty(pidInfo.toString());
