@@ -12,6 +12,7 @@ import spring.security.jwtrefreshtoken.service.UserService;
 
 @ActiveProfiles("test")
 //@WebMvcTest(controllers = {UserController.class})
+@Sql("classpath:db/teardown.sql")
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 public abstract class ControllerTestSupport {
