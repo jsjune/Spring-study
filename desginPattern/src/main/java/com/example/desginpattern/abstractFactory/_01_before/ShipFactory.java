@@ -1,15 +1,15 @@
-package com.example.desginpattern.factoryMethod._02_after;
+package com.example.desginpattern.abstractFactory._01_before;
 
 public interface ShipFactory {
     default Ship orderShip(String name, String email) {
         validate(name, email);
-        prepare(name);
+        prepareFor(name);
         Ship ship = createShip();
         sendEmailTo(email, ship);
         return ship;
     }
 
-    private void sendEmailTo(String email, Ship ship){
+    private void sendEmailTo(String email,Ship ship){
         System.out.println(ship.getName() + " 다 만들었습니다.");
     }
 
@@ -24,7 +24,7 @@ public interface ShipFactory {
         }
     }
 
-    private void prepare(String name) {
+    private void prepareFor(String name) {
         System.out.println(name + " 만들 준비 중");
     }
 

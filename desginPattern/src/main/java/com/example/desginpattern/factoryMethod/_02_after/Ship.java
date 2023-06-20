@@ -6,7 +6,7 @@ import lombok.*;
 @Setter
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Ship implements ShipFactory{
+public class Ship{
     private String name;
     private String color;
     private String logo;
@@ -18,8 +18,4 @@ public class Ship implements ShipFactory{
         this.logo = logo;
     }
 
-    @Override
-    public Ship createShip() {
-        return this;
-    }
 }

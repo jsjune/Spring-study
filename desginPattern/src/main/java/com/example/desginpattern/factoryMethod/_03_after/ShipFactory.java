@@ -6,11 +6,11 @@ public interface ShipFactory {
         validate(name, email);
         prepare(name);
         Ship ship = createShip();
-        senEmailTo(email, ship);
+        sendEmailTo(email, ship);
         return ship;
     }
 
-    private void senEmailTo(String email, Ship ship){
+    private void sendEmailTo(String email, Ship ship){
         System.out.println(ship.getName() + " 다 만들었습니다.");
     }
 
