@@ -1,0 +1,55 @@
+buildscript {
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:1.1.4"
+    }
+}
+
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.1.10'
+}
+
+subprojects {
+    compileJava {
+        sourceCompatibility = '17'
+        targetCompatibility = '17'
+    }
+
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+
+        // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+        implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.1'
+
+        implementation 'org.apache.kafka:kafka-streams:2.5.0'
+        implementation 'org.apache.kafka:kafka-clients:2.5.0'
+        implementation 'org.apache.kafka:connect-api:2.5.0'
+
+
+        implementation 'org.springframework.boot:spring-boot-starter'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    }
+}
+
+
+bootRun {
+    enabled = false
+}
+
+bootJar {
+    enabled = false
+}
+
+bootBuildImage{
+    enabled = false
+}
