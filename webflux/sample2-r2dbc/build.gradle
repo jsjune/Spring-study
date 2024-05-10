@@ -1,0 +1,22 @@
+
+group 'com.sample2'
+version '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis-reactive'
+    implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
+    implementation 'io.asyncer:r2dbc-mysql'
+
+    testImplementation 'io.projectreactor.tools:blockhound:1.0.8.RELEASE'
+
+
+}
+
+test {
+    useJUnitPlatform()
+}
+

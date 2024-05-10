@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+}
+
+group 'com.webfluxTest'
+version 'unspecified'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis-reactive'
+    implementation "io.asyncer:r2dbc-mysql:1.0.2"
+}
+
+test {
+    useJUnitPlatform()
+}
