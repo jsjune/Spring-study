@@ -1,0 +1,3 @@
+rootProject.name = 'spring-batch-prac'
+include 'api-service'
+
