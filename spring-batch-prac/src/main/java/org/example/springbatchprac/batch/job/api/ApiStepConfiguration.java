@@ -35,9 +35,7 @@ import org.springframework.batch.item.support.ClassifierCompositeItemWriter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.core.task.TaskExecutor;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
@@ -67,17 +65,6 @@ public class ApiStepConfiguration {
         handler.setStep(apiSlaveStep);
         handler.setGridSize(3);
         return handler;
-    }
-
-    @Bean
-    @Primary
-    public TaskExecutor taskExecutor() {
-        ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
-        taskExecutor.setCorePoolSize(3);
-        taskExecutor.setMaxPoolSize(6);
-        taskExecutor.setThreadNamePrefix("api-thread-");
-        taskExecutor.initialize();
-        return taskExecutor;
     }
 
     @Bean

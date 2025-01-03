@@ -35,6 +35,7 @@ public class TransactionConsumer {
 			for (ConsumerRecord<String, String> record : records) {
 				logger.info("record:{}", record);
 			}
+			consumer.commitSync();
 		}
 	}
 }

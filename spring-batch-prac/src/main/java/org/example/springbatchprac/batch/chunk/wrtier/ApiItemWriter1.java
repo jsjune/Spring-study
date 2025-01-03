@@ -30,7 +30,7 @@ public class ApiItemWriter1 extends FlatFileItemWriter<ApiRequestVO> {
 
         items = new Chunk<>(items.getItems().stream().map(item -> item.withApiResponseVO(response)).toList());
 
-        super.setResource(new FileSystemResource("E:\\Backend\\spring\\spring-batch-prac\\src\\main\\resources\\product1.txt"));
+        super.setResource(new FileSystemResource("E:\\spring-study\\spring-batch-prac\\src\\main\\resources\\data\\product1.txt"));
         super.open(new ExecutionContext());
         super.setLineAggregator(new DelimitedLineAggregator<>());
         super.setAppendAllowed(true);
