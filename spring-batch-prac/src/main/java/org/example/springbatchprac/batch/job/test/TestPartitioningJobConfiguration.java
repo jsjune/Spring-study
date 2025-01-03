@@ -65,11 +65,11 @@ public class TestPartitioningJobConfiguration {
         TaskExecutor taskExecutor,
         Step testPagingStep
     ) {
+        System.out.println("=============== testPartitionHandler INITIALIZED ===============");
         TaskExecutorPartitionHandler handler = new TaskExecutorPartitionHandler();
         handler.setTaskExecutor(taskExecutor);
         handler.setStep(testPagingStep);
         handler.setGridSize(5);
-        System.out.println("=============== testPartitionHandler INITIALIZED ===============");
         return handler;
     }
 

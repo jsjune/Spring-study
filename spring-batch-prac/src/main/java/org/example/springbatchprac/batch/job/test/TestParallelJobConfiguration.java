@@ -12,6 +12,7 @@ import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
+import org.springframework.core.task.TaskExecutor;
 import org.springframework.transaction.PlatformTransactionManager;
 
 //@Configuration
@@ -20,12 +21,13 @@ public class TestParallelJobConfiguration {
     public Job parallelJob(
         JobRepository jobRepository,
         JobExecutionListener listener,
+        TaskExecutor taskExecutor,
         Flow parallelFlow1,
         Flow parallelFlow2
     ) {
         return new JobBuilder("parallelJob", jobRepository)
             .start(parallelFlow1)
-            .split(new SimpleAsyncTaskExecutor())
+            .split(taskExecutor)
             .add(parallelFlow2)
             .end()
             .listener(listener)
