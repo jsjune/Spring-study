@@ -1,0 +1,21 @@
+logging:
+  level:
+    root: info
+    org.example.searcher: debug
+
+spring:
+  application:
+    name: searcher
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 1234
+    hikari:
+      maximum-pool-size: 20
+server:
+  port: 8081
