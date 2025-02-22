@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SSE 알림 테스트</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const clientId = "user123"; // 임의의 클라이언트 ID
+            const eventSource = new EventSource(`/sse/${clientId}`);
+
+            eventSource.onmessage = function(event) {
+                console.log("SSE 메시지 수신:", event.data);
+
+                const alertContainer = document.getElementById("alert-container");
+                const newAlert = document.createElement("div");
+                newAlert.classList.add("alert");
+                newAlert.innerHTML = `<strong>알림:</strong> ${event.data}`;
+                alertContainer.appendChild(newAlert);
+            };
+
+            eventSource.onerror = function() {
+                console.log("SSE 연결이 끊어졌습니다. 3초 후 재연결 시도...");
+                setTimeout(() => {
+                    location.reload(); // SSE 연결이 끊어지면 페이지 새로고침하여 다시 연결
+                }, 3000);
+            };
+
+            // 테스트 메시지 전송 버튼 이벤트
+            document.getElementById("send-message").addEventListener("click", function() {
+                const message = document.getElementById("message-input").value;
+                fetch(`/sse/test?message=${encodeURIComponent(message)}`)
+                    .then(response => response.text())
+                    .then(data => console.log("서버 응답:", data));
+            });
+        });
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            text-align: center;
+        }
+        .alert {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            border: 1px solid #f5c6cb;
+        }
+        input, button {
+            margin: 10px;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>SSE 알림 테스트</h2>
+    <p>Kafka 메시지가 전송되면 실시간으로 알림을 받을 수 있습니다.</p>
+
+    <div>
+        <input type="text" id="message-input" placeholder="보낼 메시지를 입력하세요">
+        <button id="send-message">메시지 전송</button>
+    </div>
+
+    <h3>📢 실시간 알림</h3>
+    <div id="alert-container"></div>
+</div>
+</body>
+</html>
