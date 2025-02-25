@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: demo
+
+  datasource:
+    shard1:
+      url: jdbc:mysql://localhost:3306/shard1_db
+      username: root
+      password: 1234
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    shard2:
+      url: jdbc:mysql://localhost:3308/shard2_db
+      username: root
+      password: 1234
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    shard3:
+      url: jdbc:mysql://localhost:3309/shard3_db
+      username: root
+      password: 1234
+      driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        ddl-auto: update
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+snowflake:
+  worker-id: 1
