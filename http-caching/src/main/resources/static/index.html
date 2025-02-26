@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cache-Control Test</title>
+</head>
+<body>
+<script>
+    let cachedData = null;
+    let cachedEtag = null;
+    let cachedTimestamp = null;
+
+    async function createData() {
+        const productName = document.getElementById("createProductName").value.trim();
+        const quantity = document.getElementById("createQuantity").value.trim();
+
+        if (!productName || !quantity) {
+            alert("상품명과 수량을 입력해주세요.");
+            return;
+        }
+
+        const requestData = {
+            productName: productName,
+            quantity: parseInt(quantity, 10)
+        };
+
+        const response = await fetch(`/api/data`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(requestData)
+        });
+
+        if (response.ok) {
+            const data = await response.text();
+            document.getElementById("output").innerText = `✅ 데이터 생성 완료! ID: ${data}`;
+        } else {
+            document.getElementById("output").innerText = "❌ 데이터 생성 실패!";
+        }
+    }
+
+    async function fetchData() {
+        const orderId = document.getElementById("orderId").value.trim();
+        if (!orderId) {
+            alert("ID를 입력해주세요.");
+            return;
+        }
+
+        const headers = {};
+        const now = Date.now();
+        const cacheMaxAge = 10 * 1000;
+
+        // 캐싱 기간이 지나지 않았다면 ETag를 포함
+        if (cachedEtag && cachedTimestamp && (now - cachedTimestamp < cacheMaxAge)) {
+            headers['If-None-Match'] = cachedEtag;
+        } else {
+            console.warn("⚠ 캐싱 기간이 초과되어 ETag를 전송하지 않습니다.");
+        }
+
+        const response = await fetch(`/api/data/${orderId}`, {headers});
+        const etag = response.headers.get('ETag');
+
+        if (response.status === 304) {
+            document.getElementById('output').innerText = `📥 캐시된 데이터: ${cachedData}`;
+            return;
+        }
+
+        if (response.ok) {
+            const data = await response.text();
+            cachedData = data;
+            cachedEtag = etag;
+            document.getElementById('output').innerText = `📥 최신 데이터: ${data}`;
+        }
+    }
+
+
+    async function updateData() {
+        const orderId = document.getElementById("updateOrderId").value.trim();
+        if (!orderId) {
+            alert("ID를 입력해주세요.");
+            return;
+        }
+        const newProductName = document.getElementById("updateProductName").value.trim();
+        const newQuantity = document.getElementById("updateQuantity").value.trim();
+
+        const updatedData = {
+            productName: newProductName,
+            quantity: parseInt(newQuantity, 10)
+        };
+        await fetch(`/api/data/${orderId}`, {
+            method: 'PUT' ,
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(updatedData)
+        });
+        document.getElementById('output').innerText = '✏ 데이터가 변경되었습니다. 다시 "데이터 가져오기"를 눌러주세요!';
+    }
+</script>
+<h1>ETag + Cache-Control 테스트</h1>
+
+<h2>📌 데이터 생성</h2>
+<label for="createProductName">상품명: </label>
+<input type="text" id="createProductName" placeholder="상품명 입력">
+<label for="createQuantity">수량: </label>
+<input type="number" id="createQuantity" placeholder="수량 입력">
+<button onclick="createData()">🆕 데이터 생성</button>
+
+<h2>📌 데이터 조회</h2>
+<label for="orderId">ID 입력: </label>
+<input type="text" id="orderId" placeholder="Order ID 입력">
+<button onclick="fetchData()">📥 데이터 가져오기</button>
+
+<h3>수정할 데이터 입력</h3>
+<label for="updateOrderId">ID 입력: </label>
+<input type="text" id="updateOrderId" placeholder="Order ID 입력">
+<label for="updateProductName">상품명: </label>
+<input type="text" id="updateProductName" placeholder="수정할 상품명">
+<label for="updateQuantity">수량: </label>
+<input type="number" id="updateQuantity" placeholder="수정할 수량">
+<button onclick="updateData()">✏ 데이터 수정</button>
+
+<p id="output">결과가 여기에 표시됩니다.</p>
+</body>
+</html>

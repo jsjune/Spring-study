@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: http-caching
+
+  jpa:
+    properties:
+      hibernate:
+        ddl-auto: update
+        format_sql: true
+    show-sql: true
+
+#  web:
+#    resources:
+#      cache:
+#        cache control:
+#          max-age: 3600
+#          must-revalidate: true
+
+
