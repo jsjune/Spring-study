@@ -3,6 +3,7 @@ package com.example.httpcaching.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,4 +25,5 @@ public class Order {
 
     private String productName;
     private int quantity;
+    private LocalDateTime updatedAt;
 }

@@ -2,6 +2,7 @@ package com.example.httpcaching.controller;
 
 import com.example.httpcaching.entity.Order;
 import com.example.httpcaching.repository.OrderRepository;
+import java.time.LocalDateTime;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.CacheControl;
@@ -32,7 +33,7 @@ public class TestController {
         System.out.println("데이터 요청");
         Order order = orderRepository.findById(id)
             .orElseThrow(() -> new IllegalArgumentException("해당 데이터가 없습니다."));
-        currentETag = generateETag();
+        currentETag = generateETag(order.getUpdatedAt());
         return ResponseEntity.ok()
                 .eTag(currentETag)
                 .cacheControl(CacheControl.maxAge(10, TimeUnit.SECONDS))  // 60초 동안 캐싱 유지
@@ -45,8 +46,10 @@ public class TestController {
             .orElseThrow(() -> new IllegalArgumentException("해당 데이터가 없습니다."));
         findOrder.setProductName(order.getProductName());
         findOrder.setQuantity(order.getQuantity());
+        LocalDateTime now = LocalDateTime.now();
+        findOrder.setUpdatedAt(now);
         orderRepository.save(findOrder);
-        currentETag = generateETag();
+        currentETag = generateETag(now);
         return ResponseEntity.ok().build();
     }
 
@@ -58,14 +61,15 @@ public class TestController {
             .id(id)
             .productName(req.getProductName())
             .quantity(req.getQuantity())
+            .updatedAt(LocalDateTime.now())
             .build();
         order = orderRepository.save(order);
         return ResponseEntity.ok().body(order);
     }
 
 
-    private static String generateETag() {
-        return "\"" + UUID.randomUUID() + "\"";
+    private static String generateETag(LocalDateTime now) {
+        return "\"" + now + "\"";
     }
 }
 
