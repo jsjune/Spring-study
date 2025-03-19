@@ -1,0 +1,11 @@
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      - /var/log/springboot/application-*.log  # 로그 파일 경로
+    fields:
+      service: "demo2-webflux"
+    fields_under_root: true
+
+output.logstash:
+  hosts: ["logstash:5044"]
