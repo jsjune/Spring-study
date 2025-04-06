@@ -1,0 +1,10 @@
+### Create Product - POST Request
+POST http://localhost:8080/products
+Content-Type: application/json
+
+{
+  "name": "Test",
+  "description": "High-performance laptop with Apple M1 chip and large display.",
+  "price": 2399.99,
+  "createdAt": "2025-04-07T12:50:00"
+}
